@@ -1,0 +1,15 @@
+
+.pie-chart {
+  margin: 0px auto;
+  padding: 0px;
+  width: 400px !important;
+  height: 400px !important;
+}
+
+canvas {
+  margin: 0px auto;
+  padding: 0;
+  display: block;
+  width: 370px !important;
+  height: 370px !important;
+}

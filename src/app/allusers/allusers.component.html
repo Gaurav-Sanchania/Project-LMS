@@ -1,0 +1,54 @@
+<div class="container1">
+    <div class="title">
+        <p class="fs-3 fw-bold text-uppercase text-primary text-center">All Users</p>
+        <hr>
+    </div>
+    <div class="table-container">
+        <table mat-table [dataSource]="dataSource" matSort>
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="sort by name"> Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="sort by name"> Email </th>
+                <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+            </ng-container>
+            <ng-container matColumnDef="address">
+                <th mat-header-cell *matHeaderCellDef> Address </th>
+                <td mat-cell *matCellDef="let element"> {{ element.address }} </td>
+            </ng-container>
+            <ng-container matColumnDef="phone">
+                <th mat-header-cell *matHeaderCellDef> Phone </th>
+                <td mat-cell *matCellDef="let element"> {{ element.phone }} </td>
+            </ng-container>
+            <ng-container matColumnDef="department">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="sort by name"> Department
+                </th>
+                <td mat-cell *matCellDef="let element"> {{element.department}} </td>
+            </ng-container>
+            <ng-container matColumnDef="userType">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name"> Type </th>
+                <td mat-cell *matCellDef="let element"> {{element.userType}} </td>
+            </ng-container>
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef> Action </th>
+                <td mat-cell *matCellDef="let element">
+                    <div class=" d-flex">
+                        <div class="" *ngIf="element.status != 'Pending'">
+                            <button class="btn btn-primary me-2" style="color: #ffffff" (click)="editUser(element)">
+                                Edit
+                            </button>
+                        </div>
+                        <div class="" *ngIf="element.status != 'Rejected'">
+                            <button class="btn btn-danger" (click)="deleteUser(element)">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+</div>

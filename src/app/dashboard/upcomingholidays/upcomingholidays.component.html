@@ -1,0 +1,17 @@
+<div class="container">
+    <p class="fs-3 fw-bold text-uppercase text-primary title">Upcoming Holidays</p>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Holiday</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let leave of holidays">
+                <td>{{leave.name}}</td>
+                <td>{{leave.date}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,39 @@
+<div class="container">
+  <h2 mat-dialog-title>Manage Leave Balance</h2>
+
+  <mat-dialog-content>
+    <form class="dialog-form">
+
+      <mat-form-field appearance="outline">
+        <mat-label>User</mat-label>
+        <input matInput [value]="data.name" readonly />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Total number of Leave Available</mat-label>
+        <input matInput [value]="data.max" readonly />
+      </mat-form-field>
+
+
+      <mat-form-field appearance="outline">
+        <mat-label>Number Of Leave Alloted</mat-label>
+        <input matInput type="text" placeholder="Enter new leave" />
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+
+  <p class="mb-0 me-4">Number Of leaves asked: {{data.totalDays}}</p>
+  <br>
+  <mat-dialog-actions align="end">
+    <div style="margin-bottom: 2rem;">
+      <button class="btn me-2" (click)="approveLeave(data.id)"
+        style="background-color: rgb(27, 167, 27); color: #ffffff">
+        Approve
+      </button>
+      <button mat-stroked-button mat-dialog-close>Cancel</button>
+      <button mat-raised-button color="primary" [mat-dialog-close]="true">
+        Save
+      </button>
+    </div>
+  </mat-dialog-actions>
+</div>

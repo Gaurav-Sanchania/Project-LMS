@@ -1,0 +1,16 @@
+.container {
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    height: 100%;
+    width: 100%;
+}
+
+.button-container {
+    margin: 0px;
+    padding: 2px 0px;
+}
+
+::ng-deep .mdc-data-table__cell, .mdc-data-table__header-cell {
+    padding: 0 16px;
+}

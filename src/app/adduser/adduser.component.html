@@ -1,0 +1,143 @@
+<div class="container1" *ngIf="!isSubmitted; else confirmationView">
+  <p class="fs-3 fw-bold text-uppercase text-primary text-center">Add User Form</p>
+  <hr>
+  <form [formGroup]="confirmationForm" (ngSubmit)="onSubmit()" class="form">
+    <div class="group1 d-flex gap-3">
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input type="text" class="form-control" id="name" formControlName="name" [ngClass]="{
+                    'is-invalid':
+                      f['name'].errors && (f['name'].dirty || f['name'].touched)
+                  }" />
+        <div *ngIf="f['name'].errors" class="invalid-feedback">
+          <div *ngIf="f['name'].errors['required']">Name is required</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" formControlName="email" [ngClass]="{
+                    'is-invalid':
+                      f['email'].errors && (f['email'].dirty || f['email'].touched)
+                  }" />
+        <div *ngIf="f['email'].errors" class="invalid-feedback">
+          <div *ngIf="f['email'].errors['required']">Email is required</div>
+          <div *ngIf="f['email'].errors['email']">Invalid email format</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="group2 d-flex gap-3">
+      <div class="form-group">
+        <label for="department">Department</label>
+        <select class="form-control" id="department" formControlName="department" [ngClass]="{
+                    'is-invalid':
+                      f['department'].errors &&
+                      (f['department'].dirty || f['department'].touched)
+                  }">
+          <option value="" disabled>Select Department</option>
+          <option *ngFor="let dept of departments" [value]="dept.id">
+            {{ dept.name }}
+          </option>
+        </select>
+        <div *ngIf="f['department'].errors" class="invalid-feedback">
+          <div *ngIf="f['department'].errors['required']">
+            Department is required
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="userType">User Type</label>
+        <select class="form-control" id="userType" formControlName="userType" [ngClass]="{
+                    'is-invalid':
+                      f['userType'].errors &&
+                      (f['userType'].dirty || f['userType'].touched)
+                  }">
+          <option value="" disabled>Select User Type</option>
+          <option *ngFor="let type of userTypes" [value]="type.id">
+            {{ type.name }}
+          </option>
+        </select>
+        <div *ngIf="f['userType'].errors" class="invalid-feedback">
+          <div *ngIf="f['userType'].errors['required']">
+            User Type is required
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="address">Address</label>
+      <textarea class="form-control" id="address" name="address" formControlName="address" rows="3" [ngClass]="{
+                'is-invalid':
+                  f['address'].errors && (f['address'].dirty || f['address'].touched)
+                }">
+                </textarea>
+      <div *ngIf="f['address'].errors" class="invalid-feedback">
+        <div *ngIf="f['address'].errors['required']">Address is required</div>
+      </div>
+    </div>
+
+    <div class="group3 d-flex gap-3">
+      <div class="form-group">
+        <label for="phonenumber">Mobile Number</label>
+        <input type="tel" id="phonenumber" name="phone" class="form-control" formControlName="phone"
+          placeholder="1234567890" [ngClass]="{
+                    'is-invalid':
+                      f['phone'].errors &&
+                      (f['phone'].dirty || f['phone'].touched)
+                  }" />
+        <div *ngIf="f['phone'].errors" class="invalid-feedback">
+          <div *ngIf="f['phone'].errors['required']">
+            Mobile number is required
+          </div>
+          <div *ngIf="f['phone'].errors['pattern']">
+            Invalid mobile number (10 digits required)
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" class="form-control" formControlName="password" [ngClass]="{
+                    'is-invalid':
+                      f['password'].errors &&
+                      (f['password'].dirty || f['password'].touched)
+                    }" />
+        <div *ngIf="f['password'].errors" class="invalid-feedback">
+          <div *ngIf="f['password'].errors['required']">Password is required</div>
+          <div *ngIf="f['password'].errors['minlength']">
+            Password must be at least 6 characters
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="confirmationForm.invalid">
+      Confirm
+    </button>
+  </form>
+</div>
+
+<ng-template #confirmationView>
+  <div class="confirmation-container">
+    <div class="success-animation">
+      <i class="fas fa-check-circle"></i>
+    </div>
+
+    <h2>Thank you for confirming!</h2>
+
+    <div class="confirmation-details">
+      <p><strong>Name:</strong> {{ submittedData.name }}</p>
+      <p><strong>Email:</strong> {{ submittedData.email }}</p>
+    </div>
+
+    <button class="btn btn-secondary me-2" (click)="isSubmitted = false">
+      Edit Information
+    </button>
+    <button class="btn btn-secondary" (click)="redirectBackToForm()">
+      Add New user
+    </button>
+  </div>
+</ng-template>

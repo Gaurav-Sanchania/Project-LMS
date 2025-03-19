@@ -1,0 +1,38 @@
+.Main-container {
+    margin: 0px auto;
+    padding: 0px 10px;
+    gap: 10px;
+}
+.Calendar-container {
+    height: 100%;
+    width: 100%;
+}
+
+.Vertical-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    width: 40%;
+    height: fit-content;
+}
+.Leave-container {
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    /* margin: 5px 0px; */
+    padding: 2px;
+    height: 50%;
+}
+.PieChart {
+    /* margin: 0px auto; */
+    /* width: fit-content; */
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    margin: 5px 0px;
+    padding: 2px;
+    height: 100%;
+}
+
+.Horizontal-container {
+    margin: 0px auto;
+    padding: 0px 10px;
+}

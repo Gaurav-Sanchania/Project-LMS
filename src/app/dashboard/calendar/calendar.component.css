@@ -1,0 +1,105 @@
+
+/* Calendar Box */
+.calendar {
+  min-height: 400px;
+  min-width: 400px;
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Headline */
+.calendar-headline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.calendar-headline-month {
+  font-weight: 700;
+  font-size: 18px;
+  color: #333;
+}
+
+.calendar-headline-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.calendar-headline-control {
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.calendar-headline-control:hover {
+  background: #f0f0f0;
+}
+
+/* Days of the Week */
+.calendar-weeks-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 15px;
+  padding-bottom: 10px;
+  color: #555;
+  text-align: center;
+}
+
+/* Calendar Grid */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  padding-top: 5px;
+}
+
+/* Calendar Cells */
+.calendar-grid-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  background: #f9f9f9;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover Effect */
+.calendar-grid-cell:hover {
+  background: #d1e0ff;
+  transform: scale(1.05);
+}
+
+/* Active Day */
+.calendar-grid-cell-active {
+  background: #4a90e2;
+  color: #fff;
+  font-weight: 700;
+  transform: scale(1.1);
+}
+
+/* Inactive Days */
+.calendar-grid-cell-inactive {
+  color: #bbb;
+  background: #f3f3f3;
+}
+
+/* Prevent inactive hover */
+.calendar-grid-cell-inactive:hover {
+  background: #f3f3f3;
+  transform: none;
+}

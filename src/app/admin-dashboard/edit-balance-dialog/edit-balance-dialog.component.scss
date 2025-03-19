@@ -1,0 +1,68 @@
+// Dialog container styling
+.container {
+  overflow: hidden;
+}
+
+.mat-dialog-container {
+    background-color: #ffffff;
+    border-radius: 10px !important;
+    padding: 24px !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  // Title styling
+  .mat-dialog-title {
+    color: #0080ff;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #ecf0f1;
+  }
+  
+  // Form field styling
+  .mat-form-field {
+    width: 100%;
+    margin-bottom: 1rem;
+  
+    .mat-input-element {
+      font-size: 1rem;
+      color: #34495e;
+    }
+  
+    .mat-form-field-label {
+      color: #7f8c8d !important;
+    }
+  }
+  
+  .mat-mdc-dialog-actions {
+    display: flex;
+    position: relative;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    box-sizing: border-box;
+    margin: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0);
+    justify-content: var(--mat-dialog-actions-alignment, flex-end);
+  }
+  
+  .dialog-form {
+    display: flex;
+    flex-direction: column;
+    min-width: 400px;
+    margin: 7px 0 0 0;
+  
+    @media (max-width: 480px) {
+      min-width: 280px;
+    }
+  }
+  p {
+    float: right;
+    color: #005cbb;
+  }
+  .ap {
+    background-color: red;
+  }
+  

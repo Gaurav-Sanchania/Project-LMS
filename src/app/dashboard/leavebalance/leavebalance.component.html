@@ -1,0 +1,12 @@
+<div class="abc">
+    <!-- <p class="fs-3 fw-bold text-uppercase text-primary">Leave Balance</p> -->
+    <div class="leave-balance-list">
+        <div class="leaveBalance" *ngFor="let leave of leaveBalance">
+            <span class="leave-type">{{ leave.leaveType }}</span>
+            <div class="circular-progress" [ngClass]="leave.leaveType.toLowerCase()" 
+                 [style]="getProgressStyle(leave.leaveBalance)">
+                <div class="inner-circle">{{ leave.leaveBalance }}</div>
+            </div>
+        </div>
+    </div>
+</div>
