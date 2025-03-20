@@ -45,7 +45,16 @@
             routerLink="/admin/addUser"
             routerLinkActive="activeLink"
             [routerLinkActiveOptions]="{ exact: true }"
-            >Add User</a
+            >Users</a
+          >
+        </li>
+        <li class="nav-item me-3" *ngIf="empOrNot() == false">
+          <a
+            class="nav-link"
+            routerLink="/admin/addUser"
+            routerLinkActive="activeLink"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Leaves</a
           >
         </li>
         <li class="nav-item me-3" *ngIf="empOrNot()">
