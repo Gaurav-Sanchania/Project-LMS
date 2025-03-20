@@ -39,13 +39,18 @@ export class LeavehistoryComponent {
   //   );
   // }
 
-  editLeave(Leave: any) {
-    console.log('Edit Leave');
+  editLeave(leaveId: number) {
+    // console.log('Edit Leave', leaveId);
   }
   deleteLeave(leaveId: number) {
     // console.log('Delete Leave', leaveId);
     this.userService.deleteLeaveById(leaveId);
     this.ngOnInit();
+  }
+  async viewLeave(leaveId: number) {
+    // console.log(leaveId);
+    const leave = await this.commonService.getLeaveById(leaveId);
+    // console.log('Fetched Leave:', leave);
   }
 
   // leavehistory: { startDate: string, endDate: string, type: string, reason: string, status: string }[] = [

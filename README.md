@@ -21,5 +21,6 @@ Gaurav TASK:
 
 2. Admin Dashboard
     -> UI Changes
+    -> Notification for Leave Requests
     -> Leave Requests Table
         * Pagination
