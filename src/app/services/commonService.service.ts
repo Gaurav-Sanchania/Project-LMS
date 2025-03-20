@@ -74,14 +74,28 @@ export class CommomnService {
         }
     }
 
-    async getLeavesForUser(): Promise<{ startDate: string; endDate: string; leaveType: string; reason: string;
-        status: string;
+    async getLeavesForUser(): Promise<{ id: number; startDate: string; endDate: string; leaveType: string; status: string;
      }[]> {
         try {
             const response = await firstValueFrom(
-                this.httpClient.get<{ startDate: string; endDate: string; leaveType: string; reason: string;
-                    status: string; }[]>(`https://localhost:7129/LeaveController/GetLeaveRequestsForUser/${this.userId}`));
+                this.httpClient.get<{ id: number; startDate: string; endDate: string; leaveType: string; status: string;
+                    }[]>(`https://localhost:7129/LeaveController/GetLeaveRequestsForUser/${this.userId}`));
             // console.log(response);
+            return response;
+        } catch (error) {
+            // console.log(error);
+            return [];
+        }
+    }
+
+    async getLeaveById(id: number): Promise<{ id:number; startDate: Date; totalDays: number; admin_Name: string; reason: string;
+        leave_Type: string }[]> {
+        try {
+            const response = await firstValueFrom(
+                this.httpClient.get<{ id:number; startDate: Date; totalDays: number; admin_Name: string; reason: string;
+                    leave_Type: string
+                 }[]>(`https://localhost:7129/LeaveController/GetLeaveById/${id}`)
+            );
             return response;
         } catch (error) {
             // console.log(error);
@@ -110,12 +124,25 @@ export class CommomnService {
         }
     }
 
+    // Needs Working
     draftLeaveRequest(leave: any) {
         try {
             this.httpClient.post("asdsf", leave).subscribe();
             return 'Successful';
         } catch (error) {
             return error;
+        }
+    }
+
+    async getAllHolidays(): Promise<{ event: string; dateOfEvent: Date }[]> {
+        try {
+            const response = await firstValueFrom(
+                this.httpClient.get<{ event: string; dateOfEvent: Date }[]>("https://localhost:7129/LeaveController/GetAllHolidays")
+            );
+            return response; 
+        } catch (error) {
+            console.log(error);
+            return [];
         }
     }
 }
