@@ -40,6 +40,7 @@ img {
     border-radius: 5px;
     transition: all 0.3s ease-in-out;
     overflow: hidden;
+    width: 10.5rem;
 }
 .nav-link::before {
     content: "";
@@ -238,3 +239,12 @@ img {
       transform: translateY(0);
     }
   }
+
+
+  /* navbar.component.css */
+.nav-link .badge {
+  font-size: 0.6rem;
+  padding: 0.25em 0.45em;
+  right: -5px;
+  top: 7px !important;
+}

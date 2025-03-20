@@ -23,7 +23,7 @@ export class EditBalanceDialogComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private adminService: AdminService, private router: Router) {}
 
   approveLeave(id: number) {
-    // console.log('Approve Leave');
+    console.log('Approve Leave');
     console.log(this.adminService.approveLeave(id));
     // console.log(id);
     window.location.reload();

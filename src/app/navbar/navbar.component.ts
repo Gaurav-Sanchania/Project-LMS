@@ -3,23 +3,41 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { LoginService } from '../services/loginService.service';
 import { CommonModule } from '@angular/common';
 
+import { NotificationService } from '../services/notification.service';
+import { Subscription } from 'rxjs';
+
 @Component({
   selector: 'app-navbar',
   imports: [RouterOutlet, RouterLink, RouterLinkActive, CommonModule],
   providers: [LoginService],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  styleUrl: './navbar.component.css',
 })
 export class NavbarComponent {
-  constructor(private loginService: LoginService) {
+  pendingRequestsCount = 0;
+  private countSubscription!: Subscription;
+
+  constructor(
+    private loginService: LoginService,
+    private notificationService: NotificationService
+  ) {}
+
+  ngOnInit() {
+    this.countSubscription = this.notificationService.currentCount.subscribe(
+      (count) => (this.pendingRequestsCount = count)
+    );
   }
-  
+
+  ngOnDestroy() {
+    this.countSubscription.unsubscribe();
+  }
+
   empOrNot(): boolean {
     const userType = this.loginService.getUserType();
     // console.log(userType);
-    
-    if(userType) {
-      if(userType == 'Employee') {
+
+    if (userType) {
+      if (userType == 'Employee') {
         return true;
       } else {
         return false;

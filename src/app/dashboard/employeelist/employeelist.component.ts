@@ -16,6 +16,6 @@ export class EmployeelistComponent {
 
   async ngOnInit() {
     this.EmployeeList = await this.commonService.getEmployeeOnLeave();
-    // console.log(this.EmployeeList);
+    console.log(this.EmployeeList);
   }
 }
