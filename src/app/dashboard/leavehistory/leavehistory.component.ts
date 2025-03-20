@@ -3,18 +3,19 @@ import { Component, ViewChild } from '@angular/core';
 import { MatSort, Sort, MatSortModule } from '@angular/material/sort';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { CommomnService } from '../../services/commonService.service';
+import { UserService } from '../../services/userService.service';
 
 @Component({
   selector: 'app-leavehistory',
   imports: [CommonModule, MatTableModule, MatSortModule],
-  providers: [CommomnService],
+  providers: [CommomnService, UserService],
   templateUrl: './leavehistory.component.html',
   styleUrl: './leavehistory.component.css'
 })
 export class LeavehistoryComponent {
   public leavehistory: any = [];
   dataSource = new MatTableDataSource([]);
-  constructor(private commonService: CommomnService) {
+  constructor(private commonService: CommomnService, private userService: UserService) {
   }
 
   async ngOnInit() {
@@ -41,8 +42,10 @@ export class LeavehistoryComponent {
   editLeave(Leave: any) {
     console.log('Edit Leave');
   }
-  deleteLeave(Leave: any) {
-    console.log('Delete Leave');
+  deleteLeave(leaveId: number) {
+    // console.log('Delete Leave', leaveId);
+    this.userService.deleteLeaveById(leaveId);
+    this.ngOnInit();
   }
 
   // leavehistory: { startDate: string, endDate: string, type: string, reason: string, status: string }[] = [
