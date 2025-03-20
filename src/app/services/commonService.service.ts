@@ -74,13 +74,28 @@ export class CommomnService {
         }
     }
 
-    async getLeavesForUser(): Promise<{ startDate: string; endDate: string; leaveType: string; status: string;
+    async getLeavesForUser(): Promise<{ id: number; startDate: string; endDate: string; leaveType: string; status: string;
      }[]> {
         try {
             const response = await firstValueFrom(
-                this.httpClient.get<{ startDate: string; endDate: string; leaveType: string; status: string;
+                this.httpClient.get<{ id: number; startDate: string; endDate: string; leaveType: string; status: string;
                     }[]>(`https://localhost:7129/LeaveController/GetLeaveRequestsForUser/${this.userId}`));
             // console.log(response);
+            return response;
+        } catch (error) {
+            // console.log(error);
+            return [];
+        }
+    }
+
+    async getLeaveById(id: number): Promise<{ id:number; startDate: Date; totalDays: number; admin_Name: string; reason: string;
+        leave_Type: string }[]> {
+        try {
+            const response = await firstValueFrom(
+                this.httpClient.get<{ id:number; startDate: Date; totalDays: number; admin_Name: string; reason: string;
+                    leave_Type: string
+                 }[]>(`https://localhost:7129/LeaveController/GetLeaveById/${id}`)
+            );
             return response;
         } catch (error) {
             // console.log(error);
