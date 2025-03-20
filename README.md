@@ -12,3 +12,8 @@ Gaurav TASK:
         * View btn - Open a sliding dialog with all leave details
         * Edit btn - Open email component pre filled to edit changes
         * Retrieve btn - Calculate leave balance first and then Remove leave record from DB
+
+2. Admin Dashboard
+    -> UI Changes
+    -> Leave Requests Table
+        * Pagination
