@@ -1,9 +1,7 @@
 <nav class="navbar navbar-expand-lg px-3 px-lg-4">
   <div class="container-fluid">
     <div class="d-flex align-items-center">
-      <a class="navbar-brand me-2" href="#">LeaveZ</a>
-      <span class="divider d-none d-sm-block"></span>
-      <div class="logoContainer ms-2 ms-sm-3">
+      <div class="logoContainer ms-2 ms-sm-3 me-2">
         <img
           src="infinnium_white.svg"
           alt="infi_logo"
@@ -12,6 +10,8 @@
           class="companyLogo img-fluid"
         />
       </div>
+      <span class="divider d-none d-sm-block"></span>
+      <a class="navbar-brand ms-2" href="#">LeaveZ</a>
     </div>
 
     <button
@@ -24,7 +24,7 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto gap-2 gap-lg-3">
+      <ul class="navbar-nav ms-auto gap-lg-3">
         <li class="nav-item me-3" *ngIf="empOrNot() == false">
           <a
             class="nav-link position-relative"
