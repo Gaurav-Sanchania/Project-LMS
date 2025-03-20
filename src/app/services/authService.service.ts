@@ -12,13 +12,13 @@ export class NotificationService {
     if ('Notification' in window) {
       Notification.requestPermission().then((permission) => {
         if (permission === 'granted') {
-          console.log('Notification permission granted.');
+          // console.log('Notification permission granted.');
         } else {
-          console.log('Notification permission denied.');
+          // console.log('Notification permission denied.');
         }
       });
     } else {
-      console.log('Browser does not support notifications.');
+      // console.log('Browser does not support notifications.');
     }
   }
 

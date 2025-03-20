@@ -1,22 +1,24 @@
 <app-leavebalance></app-leavebalance>
 
-<div class="main-section mt-4 d-flex">
-    <div class="content-display container d-flex flex-wrap justify-content-evenly gap-3">
-        <div class="calendar card shadow p-2">
-            <app-calendar></app-calendar>
+<div class="main-section mt-1 d-flex">
+    <div class="content-display">
+        <div class="d-flex gap-1">
+            <div class="calendar card shadow p-2">
+                <app-calendar></app-calendar>
+            </div>
+            <div class="pie-chart card shadow p-2">
+                <app-piechart></app-piechart>
+            </div>
         </div>
-        <div class="pie-chart card shadow p-2">
-            <app-piechart></app-piechart>
-        </div>
-        <div class="LeaveHistory container">
+        <div class="LeaveHistory">
             <app-leavehistory></app-leavehistory>
         </div>
     </div>
-    <div class="vertical-container d-flex flex-column">
-        <div class="employee-list card shadow-md p-1">
+    <div class="vertical-container">
+        <div class="employee-list  shadow-md p-1">
             <app-employeelist></app-employeelist>
         </div>
-        <div class="UpcomingHolidays card shadow-md p-1">
+        <div class="UpcomingHolidays  shadow-md p-1">
             <app-upcomingholidays></app-upcomingholidays>
         </div>
     </div>
