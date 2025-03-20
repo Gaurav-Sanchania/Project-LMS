@@ -23,7 +23,7 @@ export class LeavehistoryComponent {
     // console.log(this.leavehistory);
   }
   
-  displayedColumns: string[] = ['startDate', 'endDate', 'leaveType', 'reason', 'status', 'Action'];
+  displayedColumns: string[] = ['startDate', 'endDate', 'leaveType', 'status', 'Action'];
   
   @ViewChild(MatSort) sort!: MatSort;
   ngAfterViewChecked() {

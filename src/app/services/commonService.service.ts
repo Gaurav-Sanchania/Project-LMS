@@ -74,13 +74,12 @@ export class CommomnService {
         }
     }
 
-    async getLeavesForUser(): Promise<{ startDate: string; endDate: string; leaveType: string; reason: string;
-        status: string;
+    async getLeavesForUser(): Promise<{ startDate: string; endDate: string; leaveType: string; status: string;
      }[]> {
         try {
             const response = await firstValueFrom(
-                this.httpClient.get<{ startDate: string; endDate: string; leaveType: string; reason: string;
-                    status: string; }[]>(`https://localhost:7129/LeaveController/GetLeaveRequestsForUser/${this.userId}`));
+                this.httpClient.get<{ startDate: string; endDate: string; leaveType: string; status: string;
+                    }[]>(`https://localhost:7129/LeaveController/GetLeaveRequestsForUser/${this.userId}`));
             // console.log(response);
             return response;
         } catch (error) {
