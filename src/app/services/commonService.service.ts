@@ -110,12 +110,25 @@ export class CommomnService {
         }
     }
 
+    // Needs Working
     draftLeaveRequest(leave: any) {
         try {
             this.httpClient.post("asdsf", leave).subscribe();
             return 'Successful';
         } catch (error) {
             return error;
+        }
+    }
+
+    async getAllHolidays(): Promise<{ event: string; dateOfEvent: Date }[]> {
+        try {
+            const response = await firstValueFrom(
+                this.httpClient.get<{ event: string; dateOfEvent: Date }[]>("https://localhost:7129/LeaveController/GetAllHolidays")
+            );
+            return response; 
+        } catch (error) {
+            console.log(error);
+            return [];
         }
     }
 }
