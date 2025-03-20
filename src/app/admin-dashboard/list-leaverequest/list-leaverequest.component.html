@@ -1,52 +1,92 @@
-<div class="">
-  <p class="fs-2 fw-bold text-uppercase text-primary">Leave Requests</p>
+<div class="container-fluid">
+  <div class="d-flex justify-content-between align-items-center sticky-top">
+    <p class="fs-2 fw-bold text-uppercase text-primary mb-0">Leave Requests</p>
+    <div class="">
+      <input
+        type="search"
+        class="form-control w-10 bg-primary"
+        placeholder="Search..."
+        style="height: calc(1.5em + 1rem + 2px)"
+        (keyup)="applyFilter($event)"
+      />
+    </div>
+  </div>
   <div class="table-container">
     <table mat-table [dataSource]="dataSource" matSort>
       <ng-container matColumnDef="user_Name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="sort by name"> Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.user_Name}} </td>
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="sort by name"
+        >
+          Name
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.user_Name }}</td>
       </ng-container>
       <ng-container matColumnDef="user_Department">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="sort by user_Department"> Department </th>
-        <td mat-cell *matCellDef="let element"> {{element.user_Department}} </td>
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="sort by user_Department"
+        >
+          Department
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.user_Department }}
+        </td>
       </ng-container>
       <ng-container matColumnDef="startDate">
-        <th mat-header-cell *matHeaderCellDef> Start Date </th>
-        <td mat-cell *matCellDef="let element"> {{ element.startDate | date:'yyyy-MM-dd' }} </td>
+        <th mat-header-cell *matHeaderCellDef>Start Date</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.startDate | date : "yyyy-MM-dd" }}
+        </td>
       </ng-container>
       <ng-container matColumnDef="endDate">
-        <th mat-header-cell *matHeaderCellDef> End Date </th>
-        <td mat-cell *matCellDef="let element"> {{ element.endDate | date:'yyyy-MM-dd' }} </td>
+        <th mat-header-cell *matHeaderCellDef>End Date</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.endDate | date : "yyyy-MM-dd" }}
+        </td>
       </ng-container>
       <ng-container matColumnDef="totalDays">
-        <th mat-header-cell *matHeaderCellDef> Total Days </th>
-        <td mat-cell *matCellDef="let element"> {{element.totalDays}} </td>
+        <th mat-header-cell *matHeaderCellDef>Total Days</th>
+        <td mat-cell *matCellDef="let element">{{ element.totalDays }}</td>
       </ng-container>
       <ng-container matColumnDef="leave_Type">
-        <th mat-header-cell *matHeaderCellDef> Type </th>
-        <td mat-cell *matCellDef="let element"> {{element.leave_Type}} </td>
+        <th mat-header-cell *matHeaderCellDef>Type</th>
+        <td mat-cell *matCellDef="let element">{{ element.leave_Type }}</td>
       </ng-container>
-      <ng-container matColumnDef="reason">
-        <th mat-header-cell *matHeaderCellDef> Reason </th>
-        <td mat-cell *matCellDef="let element"> {{element.reason}} </td>
-      </ng-container>
+
       <ng-container matColumnDef="status">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="sort by status"> Status </th>
-        <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="sort by status"
+        >
+          Status
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.status }}</td>
       </ng-container>
       <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <th mat-header-cell *matHeaderCellDef>Action</th>
         <td mat-cell *matCellDef="let element">
-          <div class=" d-flex">
-            <div class="" *ngIf="element.status != 'Approved' && element.status == 'Pending'">
-              <button class="btn btn-success me-2" (click)="approveLeave(element.id)" style="color: #ffffff">
+          <div class="d-flex">
+            <div
+              class=""
+              *ngIf="
+                element.status != 'Rejected' && element.status != 'Approved'
+              "
+            >
+              <button
+                class="btn btn-success me-2"
+                style="background-color: rgb(27, 167, 27); color: #ffffff"
+                (click)="
+                  editBleance(element.totalDays, element.user_Name, element.id)
+                "
+              >
                 Approve
-              </button>
-            </div>
-            <div class="" *ngIf="element.status != 'Pending'">
-              <button class="btn btn-primary me-2" style="color: #ffffff"
-                (click)="editBleance(element.totalDays, element.user_Name, element.id)">
-                Edit
               </button>
             </div>
             <div class="" *ngIf="element.status != 'Rejected'">
@@ -58,8 +98,23 @@
         </td>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr
+        class="sticky-top"
+        mat-header-row
+        *matHeaderRowDef="displayedColumns"
+      ></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: displayedColumns"
+        (click)="openEmployeeDetails(row)"
+      ></tr>
+      <tr *ngIf="dataSource.filteredData.length === 0 && dataSource.filter">
+        <td [attr.colspan]="displayedColumns.length" class="text-center py-4">
+          <div class="text-muted fs-4">
+            No leave requests found for "{{ dataSource.filter }}"
+          </div>
+        </td>
+      </tr>
     </table>
   </div>
 </div>

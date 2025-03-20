@@ -55,6 +55,7 @@ export class LoginService {
 
         if(userString) {
             const user = JSON.parse(userString);
+            
             userType = user.userType;
             // console.log(userType);
         }
