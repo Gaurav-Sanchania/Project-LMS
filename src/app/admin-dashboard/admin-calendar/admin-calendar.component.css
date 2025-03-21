@@ -57,7 +57,7 @@
   .calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 5px;
+    gap: 12px;
     padding: 5px 0px;
   }
   

@@ -24,7 +24,7 @@ Gaurav TASK:
     -> Leave Details Table Changes
         * Make Action button conditional [COMPLETED]
         * View btn - Open a sliding dialog with all leave details
-        * Edit btn - Open email component pre filled to edit changes
+        * Edit btn - Open email component pre filled to edit changes [COMPLETED]
         * Retrieve btn - Calculate leave balance first and then Remove leave record from DB
         * Action btn - Confirmation needed before action.
 2. User - Request Leave
