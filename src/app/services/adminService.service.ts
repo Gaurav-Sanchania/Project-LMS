@@ -10,10 +10,10 @@ export class AdminService {
     constructor(private httpClient: HttpClient) {
     }
 
-    async getAllUsers(): Promise<{  }[]> {
+    async getAllUsers(): Promise<{}[]> {
         try {
             const response = await firstValueFrom(
-                this.httpClient.get<{  }[]>("https://localhost:7129/UserController/GetAllUsers")
+                this.httpClient.get<{}[]>("https://localhost:7129/UserController/GetAllUsers")
             );
             return response;
         } catch (error) {
@@ -22,14 +22,14 @@ export class AdminService {
         }
     }
 
-    async getAllLeaveRequests(): Promise<{ id: number; startDate: string; endDate: string; reason: string; user_Name: string; user_Department: string; admin_Name: string; status: string; leave_Type: string; totalDays: number }[]> {
+    async getAllLeaveRequests(): Promise<{ id: number; startDate: string; endDate: string; reason: string; user_Name: string; user_Department: string; admin_Name: string; status: string; leave_Type: string; totalDays: number, createdAt: string; }[]> {
         try {
             const response = await firstValueFrom(
-                this.httpClient.get<{ id: number; startDate: string; endDate: string; reason: string; user_Name: string; user_Department: string; admin_Name: string; status: string; leave_Type: string; totalDays: number }[]>("https://localhost:7129/LeaveController/GetAllLeaveRequest")
+                this.httpClient.get<any[]>("https://localhost:7129/LeaveController/GetAllLeaveRequest")
             );
 
-            const filteredData = response.map(({ id, startDate, endDate, reason, user_Name, user_Department, admin_Name, status, leave_Type, totalDays }) => ({
-                id, startDate, endDate, reason, user_Name, user_Department, admin_Name, status, leave_Type, totalDays
+            const filteredData = response.map(({ id, startDate, endDate, reason, user_Name, user_Department, admin_Name, status, leave_Type, totalDays,  createdAt }) => ({
+                id, startDate, endDate, reason, user_Name, user_Department, admin_Name, status, leave_Type, totalDays,createdAt
             }));
             // console.log(response);
             return filteredData;
@@ -73,16 +73,16 @@ export class AdminService {
 
     approveLeave(id: number) {
         try {
-            this.httpClient.post(`https://localhost:7129/LeaveController/ApproveLeave/${id}`, id).subscribe(() => {});
+            this.httpClient.post(`https://localhost:7129/LeaveController/ApproveLeave/${id}`, id).subscribe(() => { });
             return 'Successful';
         } catch (error) {
-            return error;           
+            return error;
         }
     }
-    
+
     rejectLeave(id: number) {
         try {
-            this.httpClient.post(`https://localhost:7129/LeaveController/RejectLeave/${id}`, id).subscribe(() => {});
+            this.httpClient.post(`https://localhost:7129/LeaveController/RejectLeave/${id}`, id).subscribe(() => { });
             return 'Successful';
         } catch (error) {
             return error;
