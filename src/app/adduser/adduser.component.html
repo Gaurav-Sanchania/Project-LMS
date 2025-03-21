@@ -7,16 +7,10 @@
     <div class="group1 d-flex gap-3">
       <div class="form-group">
         <label for="name">Full Name</label>
-        <input
-          type="text"
-          class="form-control"
-          id="name"
-          formControlName="name"
-          [ngClass]="{
+        <input type="text" class="form-control" id="name" formControlName="name" [ngClass]="{
             'is-invalid':
               f['name'].errors && (f['name'].dirty || f['name'].touched)
-          }"
-        />
+          }" />
         <div *ngIf="f['name'].errors" class="invalid-feedback">
           <div *ngIf="f['name'].errors['required']">Name is required</div>
         </div>
@@ -24,16 +18,10 @@
 
       <div class="form-group">
         <label for="email">Email</label>
-        <input
-          type="email"
-          class="form-control"
-          id="email"
-          formControlName="email"
-          [ngClass]="{
+        <input type="email" class="form-control" id="email" formControlName="email" [ngClass]="{
             'is-invalid':
               f['email'].errors && (f['email'].dirty || f['email'].touched)
-          }"
-        />
+          }" />
         <div *ngIf="f['email'].errors" class="invalid-feedback">
           <div *ngIf="f['email'].errors['required']">Email is required</div>
           <div *ngIf="f['email'].errors['email']">Invalid email format</div>
@@ -44,16 +32,11 @@
     <div class="group2 d-flex gap-3">
       <div class="form-group">
         <label for="department">Department</label>
-        <select
-          class="form-control"
-          id="department"
-          formControlName="department"
-          [ngClass]="{
+        <select class="form-control" id="department" formControlName="department" [ngClass]="{
             'is-invalid':
               f['department'].errors &&
               (f['department'].dirty || f['department'].touched)
-          }"
-        >
+          }">
           <option value="" disabled>Select Department</option>
           <option *ngFor="let dept of departments" [value]="dept.id">
             {{ dept.name }}
@@ -68,16 +51,11 @@
 
       <div class="form-group">
         <label for="userType">User Type</label>
-        <select
-          class="form-control"
-          id="userType"
-          formControlName="userType"
-          [ngClass]="{
+        <select class="form-control" id="userType" formControlName="userType" [ngClass]="{
             'is-invalid':
               f['userType'].errors &&
               (f['userType'].dirty || f['userType'].touched)
-          }"
-        >
+          }">
           <option value="" disabled>Select User Type</option>
           <option *ngFor="let type of userTypes" [value]="type.id">
             {{ type.name }}
@@ -93,17 +71,10 @@
 
     <div class="form-group">
       <label for="address">Address</label>
-      <textarea
-        class="form-control"
-        id="address"
-        name="address"
-        formControlName="address"
-        rows="3"
-        [ngClass]="{
+      <textarea class="form-control" id="address" name="address" formControlName="address" rows="3" [ngClass]="{
           'is-invalid':
             f['address'].errors && (f['address'].dirty || f['address'].touched)
-        }"
-      >
+        }">
       </textarea>
       <div *ngIf="f['address'].errors" class="invalid-feedback">
         <div *ngIf="f['address'].errors['required']">Address is required</div>
@@ -113,18 +84,11 @@
     <div class="group3 d-flex gap-3">
       <div class="form-group">
         <label for="phonenumber">Mobile Number</label>
-        <input
-          type="tel"
-          id="phonenumber"
-          name="phone"
-          class="form-control"
-          formControlName="phone"
-          placeholder="1234567890"
-          [ngClass]="{
+        <input type="tel" id="phonenumber" name="phone" class="form-control" formControlName="phone"
+          placeholder="1234567890" [ngClass]="{
             'is-invalid':
               f['phone'].errors && (f['phone'].dirty || f['phone'].touched)
-          }"
-        />
+          }" />
         <div *ngIf="f['phone'].errors" class="invalid-feedback">
           <div *ngIf="f['phone'].errors['required']">
             Mobile number is required
@@ -137,18 +101,11 @@
 
       <div class="form-group">
         <label for="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          class="form-control"
-          formControlName="password"
-          [ngClass]="{
+        <input type="password" id="password" name="password" class="form-control" formControlName="password" [ngClass]="{
             'is-invalid':
               f['password'].errors &&
               (f['password'].dirty || f['password'].touched)
-          }"
-        />
+          }" />
         <div *ngIf="f['password'].errors" class="invalid-feedback">
           <div *ngIf="f['password'].errors['required']">
             Password is required
@@ -160,11 +117,7 @@
       </div>
     </div>
 
-    <button
-      type="submit"
-      class="btn btn-primary"
-      [disabled]="confirmationForm.invalid"
-    >
+    <button type="submit" class="btn btn-primary" [disabled]="confirmationForm.invalid">
       Confirm
     </button>
   </form>
