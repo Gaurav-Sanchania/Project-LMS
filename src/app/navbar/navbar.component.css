@@ -248,3 +248,15 @@ img {
   right: -5px;
   top: 7px !important;
 }
+
+.notification-badge {
+  font-size: 0.75rem;
+  padding: 0.25em 0.6em;
+  border-radius: 10px;
+  position: absolute;
+  top: 8px;
+  right: -10px;
+  background: #ff4444;
+  color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}

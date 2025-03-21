@@ -11,7 +11,7 @@
         />
       </div>
       <span class="divider d-none d-sm-block"></span>
-      <a class="navbar-brand ms-2" href="#">LeaveZ</a>
+      <a class="navbar-brand ms-2">LeaveZ</a>
     </div>
 
     <button
@@ -35,7 +35,7 @@
               class="position-absolute top-50 start-90 translate-middle badge rounded-pill"
               style="background-color: #ff4444"
             >
-              {{ pendingRequestsCount > 0 ? pendingRequestsCount : "" }}
+              {{ pendingRequestsCount }}
             </span></a
           >
         </li>
@@ -51,7 +51,7 @@
         <li class="nav-item me-3" *ngIf="empOrNot() == false">
           <a
             class="nav-link"
-            routerLink="/admin/addUser"
+            routerLink="/admin/leaves"
             routerLinkActive="activeLink"
             [routerLinkActiveOptions]="{ exact: true }"
             >Leaves</a
