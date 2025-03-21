@@ -20,6 +20,9 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './list-leaverequest.component.scss',
 })
 export class ListLeaverequestComponent {
+  private previousPendingRequestIds: number[] = [];
+  private previousPendingCount = 0;
+  private pollingInterval = 50000; // 30 seconds
   public leaveRequests: any = [];
   dataSource = new MatTableDataSource([]);
   displayedColumns: string[] = [
@@ -34,19 +37,88 @@ export class ListLeaverequestComponent {
   ];
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private dialog: MatDialog, private adminService: AdminService,  private notificationService: NotificationService) {}
+  constructor(
+    private dialog: MatDialog,
+    private adminService: AdminService,
+    private notificationService: NotificationService
+  ) {}
 
   async ngOnInit() {
+    const storedIds = localStorage.getItem('notifiedRequestIds');
+    this.previousPendingRequestIds = storedIds ? JSON.parse(storedIds) : [];
+
     this.leaveRequests = await this.adminService.getAllLeaveRequests();
     this.dataSource = new MatTableDataSource(this.leaveRequests);
 
-     
-  // Calculate pending requests
-  const pendingCount = this.leaveRequests.filter((request: any) => 
-    request.status !== 'Approved' && request.status !== 'Rejected'
-  ).length;
-  
-  this.notificationService.updateCount(pendingCount);
+    this.notificationService.requestNotificationPermission();
+    await this.loadLeaveRequests();
+    this.startPolling();
+    // Initialize with current pending IDs
+    this.updateNotifiedRequests();
+
+    // Calculate pending requests
+    const pendingCount = this.leaveRequests.filter(
+      (request: any) =>
+        request.status !== 'Approved' && request.status !== 'Rejected'
+    ).length;
+    this.notificationService.updateCount(pendingCount);
+
+    this.notificationService.requestNotificationPermission();
+    await this.loadLeaveRequests();
+    this.startPolling();
+  }
+
+  private updateNotifiedRequests() {
+    const currentPending = this.getCurrentPendingRequests();
+    const currentIds = currentPending.map((r: any) => r.id);
+    localStorage.setItem('notifiedRequestIds', JSON.stringify(currentIds));
+    this.previousPendingRequestIds = currentIds;
+  }
+
+  private startPolling() {
+    setInterval(async () => {
+      await this.loadLeaveRequests();
+      this.checkForNewRequests();
+    }, this.pollingInterval);
+  }
+
+  private async loadLeaveRequests() {
+    this.leaveRequests = await this.adminService.getAllLeaveRequests();
+    this.dataSource = new MatTableDataSource(this.leaveRequests);
+    return this.getCurrentPendingRequests();
+  }
+  private getCurrentPendingRequests() {
+    return this.leaveRequests.filter(
+      (request: any) =>
+        request.status !== 'Approved' && request.status !== 'Rejected'
+    );
+  }
+
+  private async checkForNewRequests() {
+    const currentPending = await this.loadLeaveRequests();
+    const currentIds = currentPending.map((r: any) => r.id);
+
+    // Find new requests that haven't been notified
+    const newRequests = currentPending.filter(
+      (request: any) => !this.previousPendingRequestIds.includes(request.id)
+    );
+    if (newRequests.length > 0) {
+      // Show notification for each new request
+      newRequests.forEach((request: any) => {
+        this.notificationService.showBrowserNotification(
+          'New Leave Request',
+          `${request.user_Name} from ${request.user_Department} submitted a leave request`
+        );
+      });
+      // Update notified IDs
+      this.previousPendingRequestIds = currentIds;
+      localStorage.setItem('notifiedRequestIds', JSON.stringify(currentIds));
+
+      // Update the count
+      this.notificationService.updateCount(currentPending.length);
+
+      // this.previousPendingCount = currentPending;
+    }
   }
 
   ngAfterViewChecked() {
@@ -91,7 +163,7 @@ export class ListLeaverequestComponent {
   openEmployeeDetails(element: any): void {
     this.dialog.open(EmployeeDetailsDialogComponent, {
       width: '500px',
-      data: element
+      data: element,
     });
   }
 
