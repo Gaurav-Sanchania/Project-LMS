@@ -1,20 +1,28 @@
 <div class="container">
-    <p class="fs-3 fw-bold text-uppercase text-primary title">Employees on Leave</p>
-    <div class="" *ngIf="EmployeeList.length == 0">
-        <p>No Employee found.</p>
-    </div>
-    <table class="table table-bordered table-hover" *ngIf="EmployeeList.length != 0">
-        <thead>
-            <tr>
-                <th>Names</th>
-                <th>Department</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let leave of EmployeeList">
-                <td>{{leave.name}}</td>
-                <td>{{leave.department}}</td>
-            </tr>
-        </tbody>
-    </table>
+  <p class="fs-3 fw-bold text-uppercase text-primary title">
+    Employees on Leave
+  </p>
+  <div class="" *ngIf="EmployeeList.length == 0">
+    <p>No Employee found.</p>
+  </div>
+  <table
+    class="table table-bordered table-hover"
+    *ngIf="EmployeeList.length != 0"
+  >
+    <thead>
+      <tr>
+        <th>Names</th>
+        <th>Department</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let leave of EmployeeList"
+        (click)="openEmployeeDetails(leave)"
+      >
+        <td>{{ leave.name }}</td>
+        <td>{{ leave.department }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
