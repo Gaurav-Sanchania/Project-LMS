@@ -33,4 +33,9 @@ export const routes: Routes = [
         loadComponent: () => import('./admin-layout2/admin-layout2.component')
             .then((m) => m.AdminLayout2Component)
     },
+    {
+        path:"admin/leaves",
+        loadComponent: () => import('./leave-layout/leave-layout.component')
+            .then((m) => m.LeaveLayoutComponent)
+    },
 ];
