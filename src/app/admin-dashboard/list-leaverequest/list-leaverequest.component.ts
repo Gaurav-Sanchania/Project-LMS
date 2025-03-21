@@ -41,7 +41,7 @@ export class ListLeaverequestComponent {
     private dialog: MatDialog,
     private adminService: AdminService,
     private notificationService: NotificationService
-  ) {}
+  ) { }
 
   async ngOnInit() {
     const storedIds = localStorage.getItem('notifiedRequestIds');
@@ -83,7 +83,16 @@ export class ListLeaverequestComponent {
   }
 
   private async loadLeaveRequests() {
-    this.leaveRequests = await this.adminService.getAllLeaveRequests();
+    const allRequests = await this.adminService.getAllLeaveRequests() || [];
+
+      // Sort by newest first using `createdAt`
+  const sortedRequests = allRequests.sort((a, b) => {
+    const dateA = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+    const dateB = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+    return dateB - dateA; // Descending order
+  });
+    
+    this.leaveRequests = sortedRequests.slice(0, 10);
     this.dataSource = new MatTableDataSource(this.leaveRequests);
     return this.getCurrentPendingRequests();
   }
@@ -166,39 +175,39 @@ export class ListLeaverequestComponent {
       data: element,
     });
   }
-
-  // leavehistory: { name: string; department: string; startDate: string; endDate: string; totalDay: number;
-  //   type: string; reason: string; status: string
-  //  }[] = [
-  //   {
-  //     name: 'John Doe',
-  //     department: 'Angular',
-  //     startDate: '2021-01-01',
-  //     endDate: '2021-01-02',
-  //     totalDay: 10,
-  //     type: 'Annual Leave',
-  //     reason: 'Family Gathering',
-  //     status: 'Approved'
-  //   },
-  //   {
-  //     name: 'Emmly Doe',
-  //     department: 'dotnet',
-  //     startDate: '2021-02-01',
-  //     endDate: '2021-02-02',
-  //     totalDay: 2,
-  //     type: 'Sick Leave',
-  //     reason: 'Fever',
-  //     status: 'Approved'
-  //   },
-  //   {
-  //     name: 'joe Doe',
-  //     department: 'AI',
-  //     startDate: '2021-03-01',
-  //     endDate: '2021-03-02',
-  //     totalDay: 6,
-  //     type: 'Annual Leave',
-  //     reason: 'Family Gathering',
-  //     status: 'Approved'
-  //   }
-  // ];
 }
+// leavehistory: { name: string; department: string; startDate: string; endDate: string; totalDay: number;
+//   type: string; reason: string; status: string
+//  }[] = [
+//   {
+//     name: 'John Doe',
+//     department: 'Angular',
+//     startDate: '2021-01-01',
+//     endDate: '2021-01-02',
+//     totalDay: 10,
+//     type: 'Annual Leave',
+//     reason: 'Family Gathering',
+//     status: 'Approved'
+//   },
+//   {
+//     name: 'Emmly Doe',
+//     department: 'dotnet',
+//     startDate: '2021-02-01',
+//     endDate: '2021-02-02',
+//     totalDay: 2,
+//     type: 'Sick Leave',
+//     reason: 'Fever',
+//     status: 'Approved'
+//   },
+//   {
+//     name: 'joe Doe',
+//     department: 'AI',
+//     startDate: '2021-03-01',
+//     endDate: '2021-03-02',
+//     totalDay: 6,
+//     type: 'Annual Leave',
+//     reason: 'Family Gathering',
+//     status: 'Approved'
+//   }
+// ];
+

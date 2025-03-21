@@ -83,14 +83,14 @@
                 class="btn btn-success me-2"
                 style="background-color: rgb(27, 167, 27); color: #ffffff"
                 (click)="
-                  editBleance(element.totalDays, element.user_Name, element.id)
+                  editBleance(element.totalDays, element.user_Name, element.id); $event.stopPropagation()
                 "
               >
                 Approve
               </button>
             </div>
             <div class="" *ngIf="element.status != 'Rejected'">
-              <button class="btn btn-danger" (click)="rejectLeave(element.id)">
+              <button class="btn btn-danger" (click)="rejectLeave(element.id); $event.stopPropagation()">
                 Reject
               </button>
             </div>
@@ -108,13 +108,14 @@
         *matRowDef="let row; columns: displayedColumns"
         (click)="openEmployeeDetails(row)"
       ></tr>
-      <tr *ngIf="dataSource.filteredData.length === 0 && dataSource.filter">
+      <!-- <tr *ngIf="dataSource.filteredData.length === 0 && dataSource.filter">
         <td [attr.colspan]="displayedColumns.length" class="text-center py-4">
           <div class="">
             No leave requests found for "{{ dataSource.filter }}"
           </div>
         </td>
-      </tr>
+      </tr> -->
     </table>
+    
   </div>
 </div>
