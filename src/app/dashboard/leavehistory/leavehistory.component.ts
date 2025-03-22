@@ -5,6 +5,8 @@ import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { CommomnService } from '../../services/commonService.service';
 import { UserService } from '../../services/userService.service';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-leavehistory',
@@ -16,7 +18,7 @@ import { Router } from '@angular/router';
 export class LeavehistoryComponent {
   public leavehistory: any = [];
   dataSource = new MatTableDataSource([]);
-  constructor(private commonService: CommomnService, private userService: UserService, private route: Router) {
+  constructor(private commonService: CommomnService, private userService: UserService, private route: Router, private dialog: MatDialog) {
   }
 
   async ngOnInit() {
@@ -31,14 +33,6 @@ export class LeavehistoryComponent {
   ngAfterViewChecked() {
     this.dataSource.sort = this.sort;
   }
-  
-  // filteredDataSource = new MatTableDataSource(this.dataSource.data);
-  // applyFilter(event: Event, column: string) {
-  //   const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
-  //   this.filteredDataSource.data = this.dataSource.data.filter(item =>
-  //     (item as { [key: string]: string })[column].toLowerCase().includes(filterValue)
-  //   );
-  // }
 
   async editLeave(leaveId: number) {
     // console.log('Edit Leave', leaveId);
@@ -53,29 +47,13 @@ export class LeavehistoryComponent {
   }
   viewLeave(leaveId: number) {
     // console.log(leaveId);
+    this.openDialog(leaveId);
   }
-
-  // leavehistory: { startDate: string, endDate: string, type: string, reason: string, status: string }[] = [
-  //   {
-  //     startDate: '2021-01-01',
-  //     endDate: '2021-01-02',
-  //     type: 'Annual Leave',
-  //     reason: 'Family Gathering',
-  //     status: 'Approved'
-  //   },
-  //   {
-  //     startDate: '2021-02-01',
-  //     endDate: '2021-02-02',
-  //     type: 'Sick Leave',
-  //     reason: 'Fever',
-  //     status: 'Approved'
-  //   },
-  //   {
-  //     startDate: '2021-03-01',
-  //     endDate: '2021-03-02',
-  //     type: 'Annual Leave',
-  //     reason: 'Family Gathering',
-  //     status: 'Rejected'
-  //   }
-  // ];
+  openDialog(leaveId: number) {
+    this.dialog.open(ConfirmDialogComponent, {
+      enterAnimationDuration: '500ms',
+      exitAnimationDuration: '300ms',
+      panelClass: 'slide-dialog'
+    });
+  }
 }
