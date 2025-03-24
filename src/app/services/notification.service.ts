@@ -7,8 +7,8 @@ export class NotificationService {
   private countSource = new BehaviorSubject<number>(0);
   currentCount = this.countSource.asObservable();
   // private pendingRequestsCount = new BehaviorSubject<number>(0);
-  private notificationSound = new Audio('');
- 
+  // private notificationSound = new Audio('assets/notification.mp3');
+  // currentCount = this.pendingRequestsCount.asObservable();
 
   updateCount(count: number) {
     this.countSource.next(count);
@@ -20,15 +20,15 @@ export class NotificationService {
         icon: 'download.png',
       });
 
-      notification.addEventListener('click', () => {
-        window.open('http://localhost:4200/admin/dashboard')
-      })
+      // notification.addEventListener('click', () => {
+      //   window.open('http://localhost:4200/admin/dashboard')
+      // })
 
       setTimeout(() => {
         notification.close();
       }, 5000)
 
-      this.notificationSound.play();
+      // this.notificationSound.play();
     }
   }
 

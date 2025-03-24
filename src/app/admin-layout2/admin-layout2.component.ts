@@ -5,7 +5,7 @@ import { AllusersComponent } from "../allusers/allusers.component";
 
 @Component({
   selector: 'app-admin-layout2',
-  imports: [NavbarComponent, AdduserComponent, AllusersComponent],
+  imports: [NavbarComponent, AllusersComponent],
   templateUrl: './admin-layout2.component.html',
   styleUrl: './admin-layout2.component.scss'
 })
