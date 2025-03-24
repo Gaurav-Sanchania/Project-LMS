@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
+import { NotificationService } from '../../services/notification.service';
 // import { MatMenuTrigger, MatMenuModule } from '@angular/material/menu';
 
 @Component({
@@ -58,7 +59,7 @@ export class ListLeaverequestComponent {
   constructor(
     private dialog: MatDialog,
     private adminService: AdminService,
-    // private notificationService: NotificationService
+    private notificationService: NotificationService
   ) { }
 
   async ngOnInit() {
