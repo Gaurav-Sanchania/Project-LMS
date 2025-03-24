@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { LoginService } from '../services/loginService.service';
 import { CommonModule } from '@angular/common';
 
@@ -18,6 +18,7 @@ export class NavbarComponent {
   private countSubscription!: Subscription;
 
   constructor(
+    private route: Router,
     private loginService: LoginService,
     private notificationService: NotificationService
   ) {}
@@ -48,5 +49,8 @@ export class NavbarComponent {
   }
   clearLocalStorage() {
     localStorage.clear();
+    setTimeout(() => {
+      this.route.navigate(['/login']);
+  }, 100); 
   }
 }
