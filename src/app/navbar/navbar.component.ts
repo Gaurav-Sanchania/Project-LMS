@@ -46,4 +46,7 @@ export class NavbarComponent {
       return false;
     }
   }
+  clearLocalStorage() {
+    localStorage.clear();
+  }
 }

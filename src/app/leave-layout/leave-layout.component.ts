@@ -1,14 +1,15 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavbarComponent } from "../navbar/navbar.component";
 import { AllusersComponent } from "../allusers/allusers.component";
+import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import { CommonModule } from '@angular/common';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { AdminService } from '../services/adminService.service';
-import { MatSort } from '@angular/material/sort';
+import { MatSort, MatSortModule } from '@angular/material/sort';
 
 @Component({
   selector: 'app-leave-layout',
-  imports: [NavbarComponent, CommonModule, MatTableModule],
+  imports: [NavbarComponent, CommonModule, MatTableModule, MatPaginatorModule, MatSortModule],
   templateUrl: './leave-layout.component.html',
   styleUrl: './leave-layout.component.scss'
 })
@@ -26,6 +27,8 @@ export class LeaveLayoutComponent {
     'status'
   ];
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  hoveredRow: any = null;
 
   constructor(private adminService: AdminService) { }
 
@@ -34,11 +37,8 @@ export class LeaveLayoutComponent {
     // this.userList = await this.adminService.getAllUsers();
     this.dataSource = new MatTableDataSource(this.leaveRequests);
     // console.log(this.userList);
-  }
 
-  ngAfterViewChecked() {
+    this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
- 
-
 }
