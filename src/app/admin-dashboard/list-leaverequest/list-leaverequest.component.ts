@@ -85,13 +85,13 @@ export class ListLeaverequestComponent {
   private async loadLeaveRequests() {
     const allRequests = await this.adminService.getAllLeaveRequests() || [];
 
-      // Sort by newest first using `createdAt`
-  const sortedRequests = allRequests.sort((a, b) => {
-    const dateA = a.createdAt ? new Date(a.createdAt).getTime() : 0;
-    const dateB = b.createdAt ? new Date(b.createdAt).getTime() : 0;
-    return dateB - dateA; // Descending order
-  });
-    
+    // Sort by newest first using `createdAt`
+    const sortedRequests = allRequests.sort((a, b) => {
+      const dateA = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+      const dateB = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+      return dateB - dateA; // Descending order
+    });
+
     this.leaveRequests = sortedRequests.slice(0, 10);
     this.dataSource = new MatTableDataSource(this.leaveRequests);
     return this.getCurrentPendingRequests();
@@ -138,6 +138,7 @@ export class ListLeaverequestComponent {
     this.dataSource.sort = this.sort;
   }
 
+  //Approve Btn Logic
   editBleance(totalDayAsked: number, name: string, id: number) {
     const dialogRef = this.dialog.open(EditBalanceDialogComponent, {
       width: '700px',
@@ -151,24 +152,20 @@ export class ListLeaverequestComponent {
     });
   }
 
-  approveLeave(id: number) {
-    // console.log('Approve Leave');
-    this.adminService.approveLeave(id);
-    // console.log(id);
-    this.ngOnInit();
-  }
-
+  //Reject Btn Logic
   rejectLeave(id: number) {
     // console.log('Delete Leave');
     this.adminService.rejectLeave(id);
     this.ngOnInit();
   }
 
+  //SerchBar
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  //open dialog when click the row of emp.
   openEmployeeDetails(element: any): void {
     this.dialog.open(EmployeeDetailsDialogComponent, {
       width: '500px',
