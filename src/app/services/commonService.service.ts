@@ -89,11 +89,11 @@ export class CommomnService {
     }
 
     async getLeaveById(id: number): Promise<{ id:number; startDate: Date; totalDays: number; admin_Name: string; reason: string;
-        leave_Type: string }[]> {
+        leave_Type: string; cc: string; bcc: string; }[]> {
         try {
             const response = await firstValueFrom(
                 this.httpClient.get<{ id:number; startDate: Date; totalDays: number; admin_Name: string; reason: string;
-                    leave_Type: string
+                    leave_Type: string; cc: string; bcc: string;
                  }[]>(`https://localhost:7129/LeaveController/GetLeaveById/${id}`)
             );
             return response;

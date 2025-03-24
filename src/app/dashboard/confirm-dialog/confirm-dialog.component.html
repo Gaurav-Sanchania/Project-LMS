@@ -1,0 +1,13 @@
+<div class="container p-4">
+    <h2 mat-dialog-title class="text-center mb-3">Confirm Deletion</h2>
+
+    <mat-dialog-content class="text-center">
+        <p class="fs-5">Are you sure you want to take this leave back?</p>
+        <input matInput [value]="data" readonly hidden/>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="center" class="d-flex justify-content-center gap-3">
+        <button mat-stroked-button mat-dialog-close>Cancel</button>
+        <button mat-flat-button color="warn" [mat-dialog-close]="true" (click)="onDelete(data)">Delete</button>
+    </mat-dialog-actions>
+</div>

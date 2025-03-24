@@ -34,6 +34,7 @@
             >Admin Dashboard<span
               class="position-absolute top-50 start-90 translate-middle badge rounded-pill"
               style="background-color: #ff4444"
+              *ngIf="pendingRequestsCount > 0"
             >
               {{ pendingRequestsCount }}
             </span></a

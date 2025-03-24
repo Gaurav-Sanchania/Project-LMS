@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { LeaveRequestComponent } from './leave-request/leave-request.component';
 
 export const routes: Routes = [
     { 
@@ -17,6 +18,10 @@ export const routes: Routes = [
             .then((m) => m.MainLayoutComponent),
         children: [
         ] 
+    },
+    {
+        path: "leaveRequest/:formData",
+        component: LeaveRequestComponent
     },
     {
         path:"leaveRequest",

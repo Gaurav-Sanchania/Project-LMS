@@ -2,6 +2,7 @@
 /* Calendar Box */
 .calendar {
     min-width: 400px;
+    height: auto;
     background: #ffffff;
     padding: 5px;
     border-radius: 12px;
@@ -57,7 +58,7 @@
   .calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 5px;
+    gap: 12px;
     padding: 5px 0px;
   }
   

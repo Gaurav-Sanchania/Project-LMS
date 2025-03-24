@@ -8,7 +8,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommomnService } from '../../services/commonService.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { LoginService } from '../../services/loginService.service';
 
@@ -25,18 +25,44 @@ export class EmailComponent {
   confirmationForm!: FormGroup;
   isSubmitted = false;
   submittedData: any;
-  public leaveTypes: any = [];
+  public leaveTypes: any = {};
+  leaveData: any = [];
+  steps = Array.from({ length: 11 }, (_, i) => i);
 
-  constructor(private fb: FormBuilder, private router: Router, private commonService: CommomnService,
+  constructor(private fb: FormBuilder, private route: ActivatedRoute, private commonService: CommomnService,
     private loginService: LoginService
   ) {
     this.confirmationForm = this.fb.group({});
   }
   
-  async ngOnInit(){
+  async ngOnInit() {
     this.leaveTypes = await this.commonService.getLeaveTypes();
+    const params: any = this.route.snapshot.paramMap;
+    // console.log(params);
+    if (params.keys.length === 0) {
+      // console.log("No parameters found");
+    } else {
+      this.leaveData = {
+        startDate: params.get('startDate'),
+        endDate: params.get('endDate'),
+        reason: params.get('reason'),
+        user_Name: params.get('user_Name'),
+        user_Department: params.get('user_Department'),
+        totalDays: +params.get('totalDays')!,
+        admin_Name: params.get('admin_Name'),
+        createdAt: params.get('createdAt'),
+        updatedAt: params.get('updatedAt'),
+        createdBy: params.get('createdBy'),
+        updatedBy: params.get('updatedBy'),
+        status: params.get('status'),
+        leave_Type: +params.get('leave_Type')!,
+        cc: params.get('cc'),
+        bcc: params.get('bcc'),
+      };
+    }
     this.initForm();
   }
+  
 
   private initForm() {
       this.confirmationForm = this.fb.group({
