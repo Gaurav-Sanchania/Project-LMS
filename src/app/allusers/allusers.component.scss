@@ -17,14 +17,22 @@
     height: 0px;
     display: none;
 }
-.title {
-    background-color: white;
-    position: sticky;
-    top: 0px;
-    margin: 0px;
-    padding: 0;
-    z-index: 1;
+.title-container {
+  display: grid;
+  grid-template-columns: 80% 20%;
+  align-items: center; 
+  gap: 10px; 
+}
+
+.title-text {
+  margin-left: 10rem;
+}
+.buttons {
+  justify-self: end;
+}
+.fa-rotate {
+  font-size: larger;
 }
 .demo-row-is-hovered {
-  background-color: rgba(0, 0, 255, 0.1); /* Light blue background */
+  background-color: rgba(0, 0, 255, 0.1);
 }

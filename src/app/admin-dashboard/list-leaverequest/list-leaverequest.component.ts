@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
 import { EmployeeDetailsDialogComponent } from './employee-details-dialog/employee-details-dialog.component';
-import { NotificationService } from '../../services/notification.service';
+// import { NotificationService } from '../../services/notification.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EditBalanceDialogComponent } from '../edit-balance-dialog/edit-balance-dialog.component';
 import { MatSort, MatSortModule } from '@angular/material/sort';
@@ -40,7 +40,7 @@ export class ListLeaverequestComponent {
   constructor(
     private dialog: MatDialog,
     private adminService: AdminService,
-    private notificationService: NotificationService
+    // private notificationService: NotificationService
   ) { }
 
   async ngOnInit() {

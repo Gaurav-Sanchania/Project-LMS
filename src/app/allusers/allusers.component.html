@@ -1,8 +1,16 @@
 <div class="container1">
-    <div class="title">
-        <p class="fs-3 fw-bold text-uppercase text-primary text-center">All Users</p>
-        <hr>
+    <div class="title-container">
+        <p class="title-text fs-3 fw-bold text-uppercase text-primary text-center mb-0">All Users</p>
+        <div class="buttons">
+            <button mat-fab extended class="add-user-btn mt-2 me-2" (click)="addUserForm()">
+                <i class="fa-solid fa-user me-2"></i> Add User
+            </button>
+            <button mat-fab extended class="add-user-btn mt-2 me-2" (click)="refresh()">
+                <i class="fa-solid fa-rotate"></i>
+            </button>
+        </div>
     </div>
+    <hr>
     <div class="Main-Container">
         <div class="table-container">
             <table mat-table [dataSource]="dataSource" matSort>

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ViewChild } from '@angular/core';
+import { Component, Inject, ViewChild } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -11,6 +11,7 @@ import { AdminService } from '../services/adminService.service';
 import { LoginService } from '../services/loginService.service';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-adduser',
@@ -28,29 +29,35 @@ export class AdduserComponent {
   public userTypes: any = [];
 
   constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,
     private router: Router,
     private adminService: AdminService
   ) {}
 
   async ngOnInit() {
-    this.initForm();
+    if (this.data) {
+        this.initForm(this.data); // Pass data to initForm
+    } else {
+        this.initForm(); // Initialize empty form
+    }
+
     this.departments = await this.adminService.getDepartmentTypes();
     this.userTypes = await this.adminService.getUserTypes();
-    // console.log(this.userList);
-  }
+}
 
-  private initForm() {
+private initForm(data: any = null) {
     this.confirmationForm = this.fb.group({
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      address: ['', Validators.required],
-      phone: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      department: ['', Validators.required],
-      userType: ['', Validators.required],
+        name: [data?.name || '', Validators.required],
+        email: [data?.email || '', [Validators.required, Validators.email]],
+        address: [data?.address || '', Validators.required],
+        phone: [data?.phone || '', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
+        password: [data ? '******' : '', [Validators.required, Validators.minLength(6)]], // Hide password
+        department: [data?.department || '', Validators.required],
+        userType: [data?.userType || '', Validators.required],
     });
-  }
+}
+
 
   onSubmit() {
     if (this.confirmationForm.valid) {
