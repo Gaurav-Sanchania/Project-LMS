@@ -92,7 +92,7 @@ export class ListLeaverequestComponent {
     return dateB - dateA; // Descending order
   });
     
-    this.leaveRequests = sortedRequests.slice(0, 10);
+    // this.leaveRequests = sortedRequests.slice(0, 10);
     this.dataSource = new MatTableDataSource(this.leaveRequests);
     return this.getCurrentPendingRequests();
   }
