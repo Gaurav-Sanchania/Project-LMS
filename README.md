@@ -12,7 +12,7 @@ Aayush TASK:
     -> UI Changes for Leave Requests Table
 2. Employees On Leave [COMPLETED]
     -> Apply dialog on click table row. Including all user's details
-3. Leave Requests Table [SOLVED]
+3. Leave Requests Table [PENDING]
     -> Bug: On Action button click User's Detail Dialog opens up. It should not open
 4. Leaves Feature [COMPLETED]
     -> Create new layout for all leave requests. Contains a table with all essential features.
@@ -22,13 +22,9 @@ Gaurav TASK:
     -> UI Changes [COMPLETED]
     -> Leave Details Table Changes
         * Make Action button conditional [COMPLETED]
-<<<<<<< HEAD
         * View btn - Open a sliding dialog with all leave details [UI-Done]
-=======
-        * View btn - Open a sliding dialog with all leave details
->>>>>>> Gaurav
         * Edit btn - Open email component pre filled to edit changes [COMPLETED]
-        * Retrieve btn - Calculate leave balance first and then Remove leave record from DB
+        * Retrieve btn - Calculate leave balance first and then Remove leave record from DB [COMPLETED]
         * Action btn - Confirmation needed before action.
 2. User - Request Leave
     -> UI Changes
