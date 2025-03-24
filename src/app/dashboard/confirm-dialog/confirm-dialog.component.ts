@@ -12,6 +12,7 @@ import {
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { Router } from '@angular/router';
 import { AdminService } from '../../services/adminService.service';
+import { UserService } from '../../services/userService.service';
 
 @Component({
   selector: 'app-confirm-dialog',
@@ -25,6 +26,11 @@ import { AdminService } from '../../services/adminService.service';
   styleUrl: './confirm-dialog.component.scss'
 })
 export class ConfirmDialogComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private adminService: AdminService, private router: Router) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private adminService: AdminService, private router: Router, private userService: UserService) {
+  }
+
+  onDelete(id: number) {
+    // console.log(id);
+    this.userService.deleteLeaveById(id);
   }
 }

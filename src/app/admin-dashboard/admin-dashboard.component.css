@@ -9,9 +9,9 @@
 
 .Vertical-container {
     display: flex;
+    justify-content: space-between;
     flex-direction: column;
     width: 40%;
-    height: fit-content;
 }
 .Leave-container {
     background-color: #f5f5f5;

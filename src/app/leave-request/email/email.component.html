@@ -9,15 +9,9 @@
       <div class="col">
         <div class="d-flex align-items-center">
           <label for="to">To</label>
-          <input
-            type="email"
-            class="form-control ms-2"
-            id="to"
-            formControlName="to"
-            [ngClass]="{
+          <input type="email" class="form-control ms-2" id="to" formControlName="to" [ngClass]="{
               'is-invalid': f['to'].errors && (f['to'].dirty || f['to'].touched)
-            }"
-          />
+            }" />
         </div>
         <div *ngIf="f['to'].errors" class="invalid-feedback d-block">
           <div *ngIf="f['to'].errors['email']">Invalid email format</div>
@@ -26,16 +20,9 @@
       <div class="col">
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>Choose a Date</mat-label>
-          <input
-            matInput
-            [matDatepicker]="datepicker"
-            formControlName="datePicker"
-          />
+          <input matInput [matDatepicker]="datepicker" formControlName="datePicker" />
           <mat-hint>MM/DD/YYYY</mat-hint>
-          <mat-datepicker-toggle
-            matIconSuffix
-            [for]="datepicker"
-          ></mat-datepicker-toggle>
+          <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
           <mat-datepicker #datepicker>
             <mat-datepicker-actions>
               <button mat-button matDatepickerCancel>Cancel</button>
@@ -54,16 +41,10 @@
       <div class="col">
         <div class="d-flex align-items-center">
           <label for="bcc">BCC</label>
-          <input
-            type="email"
-            class="form-control ms-2"
-            id="bcc"
-            formControlName="bcc"
-            [ngClass]="{
+          <input type="email" class="form-control ms-2" id="bcc" formControlName="bcc" [ngClass]="{
               'is-invalid':
                 f['bcc'].errors && (f['bcc'].dirty || f['bcc'].touched)
-            }"
-          />
+            }" />
         </div>
         <div *ngIf="f['bcc'].errors" class="invalid-feedback d-block">
           <div *ngIf="f['bcc'].errors['required']">Email is required</div>
@@ -73,15 +54,9 @@
       <div class="col">
         <div class="d-flex align-items-center">
           <label for="cc">CC</label>
-          <input
-            type="email"
-            class="form-control ms-2"
-            id="cc"
-            formControlName="cc"
-            [ngClass]="{
+          <input type="email" class="form-control ms-2" id="cc" formControlName="cc" [ngClass]="{
               'is-invalid': f['cc'].errors && (f['cc'].dirty || f['cc'].touched)
-            }"
-          />
+            }" />
         </div>
         <div *ngIf="f['cc'].errors" class="invalid-feedback d-block">
           <div *ngIf="f['cc'].errors['required']">Email is required</div>
@@ -92,16 +67,10 @@
 
     <!-- Row 3: Subject -->
     <div class="form-group mb-3">
-      <input
-        type="text"
-        class="form-control"
-        id="subject"
-        placeholder="Subject"
-        [ngClass]="{
+      <input type="text" class="form-control" id="subject" placeholder="Subject :" [ngClass]="{
           'is-invalid':
             f['subject'].errors && (f['subject'].dirty || f['subject'].touched)
-        }"
-      />
+        }" />
       <div *ngIf="f['subject'].errors" class="invalid-feedback d-block">
         <div *ngIf="f['subject'].errors['required']">Subject is required</div>
       </div>
@@ -110,25 +79,17 @@
     <!-- Remaining form fields -->
     <div class="group2 d-flex gap-3 mb-3">
       <div class="form-group">
-        <div class="d-flex align-items-center">
-          <label for="numberOfDays" class="form-label"
-            >Select Number of Leaves</label
-          >
-          <mat-slider
-            min="0"
-            max="10"
-            step="1"
-            showTickMarks
-            discrete
-            [displayWith]="formatLabel"
-            class="ms-3"
-          >
-            <input
-              matSliderThumb
-              id="numberOfDays"
-              formControlName="numberOfDays"
-            />
-          </mat-slider>
+        <div class="d-flex flex-column">
+          <label for="numberOfDays" class="form-label">Select Number of Leaves</label>
+          <div class="d-flex align-items-center">
+            <mat-slider min="0" max="10" step="1" showTickMarks discrete [displayWith]="formatLabel"
+              class="ms-3 flex-grow-1">
+              <input matSliderThumb id="numberOfDays" formControlName="numberOfDays" />
+            </mat-slider>
+          </div>
+          <div class="d-flex justify-content-between">
+            <span *ngFor="let step of steps">{{ step }}</span>
+          </div>
         </div>
         <div *ngIf="f['numberOfDays'].errors" class="text-danger mt-1">
           <div *ngIf="f['numberOfDays'].errors['required']">
@@ -140,15 +101,10 @@
         </div>
       </div>
       <div class="form-group">
-        <select
-          class="form-control"
-          id="leavetype"
-          formControlName="leaves"
-          [ngClass]="{
+        <select class="form-control" id="leavetype" formControlName="leaves" [ngClass]="{
             'is-invalid':
               f['leaves'].errors && (f['leaves'].dirty || f['leaves'].touched)
-          }"
-        >
+          }">
           <option value="" disabled>Select Leave Type</option>
           <option *ngFor="let dept of leaveTypes" [value]="dept.id">
             {{ dept.name }}
@@ -170,20 +126,11 @@
       </div>
     </div>
 
-    <div class="d-flex justify-content-between">
-      <button
-        type="button"
-        class="btn btn-secondary"
-        (click)="draftMail()"
-        [disabled]="confirmationForm.invalid"
-      >
+    <div class="actionBtn">
+      <button type="button" class="btn btn-secondary" (click)="draftMail()" [disabled]="confirmationForm.invalid">
         Save Draft
       </button>
-      <button
-        type="submit"
-        class="btn btn-primary"
-        [disabled]="confirmationForm.invalid"
-      >
+      <button type="submit" class="btn btn-primary" [disabled]="confirmationForm.invalid">
         Send
       </button>
     </div>
@@ -208,7 +155,7 @@
       <p>
         <strong>End Date:</strong>
         {{
-          calculateEndDate(submittedData.datePicker, submittedData.numberOfDays)
+        calculateEndDate(submittedData.datePicker, submittedData.numberOfDays)
         }}
       </p>
     </div>

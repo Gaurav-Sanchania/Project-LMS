@@ -2,6 +2,7 @@
 /* Calendar Box */
 .calendar {
     min-width: 400px;
+    height: auto;
     background: #ffffff;
     padding: 5px;
     border-radius: 12px;

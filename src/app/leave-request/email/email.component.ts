@@ -27,6 +27,7 @@ export class EmailComponent {
   submittedData: any;
   public leaveTypes: any = {};
   leaveData: any = [];
+  steps = Array.from({ length: 11 }, (_, i) => i);
 
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private commonService: CommomnService,
     private loginService: LoginService
@@ -36,35 +37,30 @@ export class EmailComponent {
   
   async ngOnInit() {
     this.leaveTypes = await this.commonService.getLeaveTypes();
-    const params = this.route.snapshot.paramMap;
-    this.leaveData = {
-      startDate: params.get('startDate'),
-      endDate: params.get('endDate'),
-      reason: params.get('reason'),
-      user_Name: params.get('user_Name'),
-      user_Department: params.get('user_Department'),
-      totalDays: +params.get('totalDays')!,
-      admin_Name: params.get('admin_Name'),
-      createdAt: params.get('createdAt'),
-      updatedAt: params.get('updatedAt'),
-      createdBy: params.get('createdBy'),
-      updatedBy: params.get('updatedBy'),
-      status: params.get('status'),
-      leave_Type: +params.get('leave_Type')!,
-      cc: params.get('cc'),
-      bcc: params.get('bcc'),
-    };
+    const params: any = this.route.snapshot.paramMap;
+    // console.log(params);
+    if (params.keys.length === 0) {
+      // console.log("No parameters found");
+    } else {
+      this.leaveData = {
+        startDate: params.get('startDate'),
+        endDate: params.get('endDate'),
+        reason: params.get('reason'),
+        user_Name: params.get('user_Name'),
+        user_Department: params.get('user_Department'),
+        totalDays: +params.get('totalDays')!,
+        admin_Name: params.get('admin_Name'),
+        createdAt: params.get('createdAt'),
+        updatedAt: params.get('updatedAt'),
+        createdBy: params.get('createdBy'),
+        updatedBy: params.get('updatedBy'),
+        status: params.get('status'),
+        leave_Type: +params.get('leave_Type')!,
+        cc: params.get('cc'),
+        bcc: params.get('bcc'),
+      };
+    }
     this.initForm();
-    this.confirmationForm.patchValue({
-      to: this.leaveData.admin_Name,
-      cc: this.leaveData.cc,
-      bcc: this.leaveData.bcc,
-      subject: `Subject: Leave Request - ${this.leaveData.user_Name}`,
-      numberOfDays: this.leaveData.totalDays,
-      leaves: this.leaveData.leave_Type,
-      datePicker: new Date(this.leaveData.startDate!),
-      froalaEditor: this.leaveData.reason,
-    });
   }
   
 

@@ -40,20 +40,21 @@ export class LeavehistoryComponent {
     // console.log('Fetched Leave:', leave);
     this.route.navigate(["leaveRequest", leave]);
   }
-  deleteLeave(leaveId: number) {
-    // console.log('Delete Leave', leaveId);
-    this.userService.deleteLeaveById(leaveId);
-    this.ngOnInit();
-  }
   viewLeave(leaveId: number) {
     // console.log(leaveId);
     this.openDialog(leaveId);
+  }
+  deleteLeave(leaveId: number) {
+    // console.log('Delete Leave', leaveId);
+    this.openDialog(leaveId);
+    // this.ngOnInit();
   }
   openDialog(leaveId: number) {
     this.dialog.open(ConfirmDialogComponent, {
       enterAnimationDuration: '500ms',
       exitAnimationDuration: '300ms',
-      panelClass: 'slide-dialog'
+      panelClass: 'slide-dialog',
+      data: { leaveId: leaveId }
     });
   }
 }

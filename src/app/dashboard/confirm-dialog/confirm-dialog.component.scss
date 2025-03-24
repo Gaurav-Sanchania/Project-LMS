@@ -1,0 +1,113 @@
+/* Base container styling */
+.container {
+    max-width: 450px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    background-color: #ffffff;
+    margin: 1.5rem auto;
+    padding: 1rem !important;
+    border: 1px solid rgba(230, 230, 230, 0.7);
+  }
+  
+  /* Dialog title styling */
+  mat-dialog-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 1.5rem !important;
+    letter-spacing: -0.02em;
+  }
+  
+  /* Dialog content styling */
+  mat-dialog-content {
+    margin-bottom: 1.75rem;
+  }
+  
+  mat-dialog-content p {
+    color: #5f6b7a;
+    line-height: 1.6;
+    font-size: 1.125rem;
+    margin-bottom: 0;
+  }
+  
+  /* Button container styling */
+  mat-dialog-actions {
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Base button styling */
+  button {
+    min-width: 120px;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    font-size: 0.95rem;
+    letter-spacing: 0.01em;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Cancel button styling */
+  button[mat-stroked-button] {
+    border: 1px solid #e0e5ec;
+    color: #4a5568;
+    background-color: #f8fafc;
+  }
+  
+  button[mat-stroked-button]:hover {
+    background-color: #edf2f7;
+    color: #2d3748;
+  }
+  
+  /* Delete button styling */
+  button[mat-flat-button][color="warn"] {
+    background-color: #e53e3e;
+    color: white;
+  }
+  
+  button[mat-flat-button][color="warn"]:hover {
+    background-color: #c53030;
+    box-shadow: 0 4px 8px rgba(229, 62, 62, 0.2);
+  }
+  
+  button[mat-flat-button][color="warn"]:active {
+    transform: translateY(1px);
+  }
+  
+  /* Button focus states */
+  button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.3);
+  }
+  
+  /* Add responsive adjustments */
+  @media (max-width: 480px) {
+    .container {
+      max-width: 100%;
+      padding: 1.5rem !important;
+      margin: 1rem;
+      border-radius: 8px;
+    }
+    
+    mat-dialog-actions {
+      flex-direction: column;
+      gap: 0.75rem !important;
+    }
+    
+    button {
+      width: 100%;
+      margin: 0;
+    }
+  }
+  
+  /* Add subtle animation */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .container {
+    animation: fadeIn 0.3s ease-out;
+  }
