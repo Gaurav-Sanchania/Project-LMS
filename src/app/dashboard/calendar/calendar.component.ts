@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, Signal, signal, WritableSignal } from '@angular/core';
+import { Component, computed, EventEmitter, Output, Signal, signal, WritableSignal } from '@angular/core';
 import { DateTime, Info, Interval } from 'luxon';
 
 @Component({
@@ -9,6 +9,7 @@ import { DateTime, Info, Interval } from 'luxon';
   styleUrl: './calendar.component.css',
 })
 export class CalendarComponent {
+  @Output() dateSelected = new EventEmitter<Date>();
   today: Signal<DateTime> = signal(DateTime.local());
   firstDayOfActiveMonth: WritableSignal<DateTime> = signal(
     this.today().startOf('month')
@@ -32,6 +33,8 @@ export class CalendarComponent {
   constructor() {
     this.activeDay.set(this.today());
   }
+  ngOnInit() {
+  }
 
   goToPreviousMonth(): void {
     this.firstDayOfActiveMonth.set(
@@ -48,5 +51,14 @@ export class CalendarComponent {
   goToToday(): void {
     this.firstDayOfActiveMonth.set(this.today().startOf('month'));
     this.activeDay.set(this.today());
+  }
+
+  handleCalendarEvent(day: any) {
+    this.activeDay.set(day);
+    // console.log(this.activeDay);
+    if (this.activeDay() !== null) {
+      this.dateSelected.emit(this.activeDay()!.toJSDate());
+    }
+    this.ngOnInit();
   }
 }

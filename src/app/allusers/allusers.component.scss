@@ -8,8 +8,8 @@
     padding-bottom: 10px;
     // border-radius: 10px;
     height: 90vh;
-    overflow-y: auto;
-    overflow-x: hidden;
+    // overflow-y: auto;
+    // overflow-x: hidden;
   }
 
   .container1::-webkit-scrollbar {
@@ -35,4 +35,8 @@
 }
 .demo-row-is-hovered {
   background-color: rgba(0, 0, 255, 0.1);
+}
+.add-user-btn.mat-mdc-fab.mat-mdc-fab-extended {
+  padding: 8px 6px !important; 
+  min-width: auto !important; 
 }

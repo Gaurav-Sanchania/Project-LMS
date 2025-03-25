@@ -40,9 +40,9 @@ Gaurav TASK:
     -> Referesh btn [COMPLETED]
     -> Apply checkbox for all users
     -> Apply dialog for all users record
-    -> Pagination
+    -> Pagination [COMPLETED]
 5. Admin - Navbar 
-    -> Provide User's nav links also to the Admin
-    -> Remove Leave balance from admin dashboard
+    -> Provide User's nav links also to the Admin [COMPLETED]
+    -> Remove Leave balance from admin dashboard [COMPLETED]
 6. Admin - Leave Request Click
     -> Dialog for viewing individual user details

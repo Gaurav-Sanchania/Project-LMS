@@ -14,5 +14,9 @@ import { EmployeelistComponent } from "./employeelist/employeelist.component";
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
+  selectedDate: Date = new Date();
 
+  onDateChange(date: Date) {
+    this.selectedDate = date;
+  }
 }

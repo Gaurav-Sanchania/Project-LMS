@@ -14,3 +14,6 @@
 ::ng-deep .mdc-data-table__cell, .mdc-data-table__header-cell {
     padding: 0 16px;
 }
+.demo-row-is-hovered {
+    background-color: rgba(0, 0, 255, 0.1); /* Light blue background */
+  }

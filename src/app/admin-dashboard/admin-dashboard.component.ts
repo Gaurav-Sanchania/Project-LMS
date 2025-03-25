@@ -9,7 +9,7 @@ import { CommomnService } from '../services/commonService.service';
 
 @Component({
   selector: 'app-admin-dashboard',
-  imports: [LeavebalanceComponent, EmployeelistComponent, AdminCalendarComponent, PiechartComponent, ListLeaverequestComponent],
+  imports: [EmployeelistComponent, AdminCalendarComponent, PiechartComponent, ListLeaverequestComponent],
   providers: [CommomnService],
   templateUrl: './admin-dashboard.component.html',
   styleUrl: './admin-dashboard.component.css'

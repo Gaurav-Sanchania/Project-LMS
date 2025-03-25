@@ -49,7 +49,12 @@
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr mat-row (mouseenter)="hoveredRow = row" (mouseleave)="hoveredRow = null"
+                [class.demo-row-is-hovered]="hoveredRow === row"
+                *matRowDef="let row; columns: displayedColumns;">
+            </tr>
         </table>
+        <mat-paginator [pageSize]="5" showFirstLastButtons aria-label="Select page of periodic elements">
+        </mat-paginator>
     </div>
 </div>

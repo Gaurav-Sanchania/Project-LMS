@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { CommomnService } from '../../services/commonService.service';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -12,11 +12,26 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class EmployeelistComponent {
   EmployeeList: any = [];
+  @Input() selectedDate!: Date;
   constructor(private commonService: CommomnService, private dialog: MatDialog) {
   }
 
-  async ngOnInit() {
-    this.EmployeeList = await this.commonService.getEmployeeOnLeave();
-    // console.log(this.EmployeeList);
+  async fetchData() {
+    if (!this.selectedDate){
+      this.EmployeeList = await this.commonService.getEmployeeOnLeave();
+      // console.log(this.EmployeeList);
+    } else {
+        this.EmployeeList = await this.commonService.getEmployeeOnLeaveDate(this.selectedDate);
+    }
+  }
+  
+  ngOnInit() {
+    this.fetchData();
+  }
+  
+  ngOnChanges(changes: SimpleChanges) {
+      if (changes['selectedDate']) {
+        this.fetchData();
+      }
   }
 }
