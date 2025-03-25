@@ -49,21 +49,21 @@ img {
     height: 3px;
     bottom: 0;
     left: -100%;
-    background: #FFD700;;
+    background: #E76F51;
     transition: left 0.3s ease-in-out;
 }
 .nav-link:hover::before {
     left: 0;
 }
 .nav-link:hover {
-    color: #FFD700;;
+    color: #E76F51;
     /* text-shadow: 0px 0px 8px rgba(255, 215, 0, 0.6); */
     /* transform: translateY(-3px); */
 }
 
 /* Nav Active Link */
 .activeLink {
-    color: #FFD700;;
+    color: #E76F51;
     /* background: rgba(255, 255, 255, 0.2); */
     transform: scale(1.1);
     transition: transform 0.3s ease-in-out;

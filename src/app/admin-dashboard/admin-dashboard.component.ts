@@ -6,10 +6,12 @@ import { AdminCalendarComponent } from "./admin-calendar/admin-calendar.componen
 import { PiechartComponent } from "../dashboard/piechart/piechart.component";
 import { ListLeaverequestComponent } from "./list-leaverequest/list-leaverequest.component";
 import { CommomnService } from '../services/commonService.service';
+import { AdminHolidayComponent } from "./admin-holiday/admin-holiday.component";
+
 
 @Component({
   selector: 'app-admin-dashboard',
-  imports: [LeavebalanceComponent, EmployeelistComponent, AdminCalendarComponent, PiechartComponent, ListLeaverequestComponent],
+  imports: [EmployeelistComponent, AdminCalendarComponent, PiechartComponent, ListLeaverequestComponent, AdminHolidayComponent],
   providers: [CommomnService],
   templateUrl: './admin-dashboard.component.html',
   styleUrl: './admin-dashboard.component.css'

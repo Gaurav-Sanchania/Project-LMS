@@ -1,18 +1,27 @@
-<app-leavebalance></app-leavebalance>
+<!-- <app-leavebalance></app-leavebalance> -->
 
-<div class="Main-container d-flex mt-1">
-  <div class="Calendar-container">
-    <app-admin-calendar></app-admin-calendar>
-  </div>
-  <div class="Vertical-container">
-    <div class="Leave-container">
-      <app-employeelist></app-employeelist>
+<div class="main-section mt-1 d-flex">
+  <div class="content-display">
+    <div class="d-flex gap-1">
+      <div class="calendar card shadow p-2">
+        <app-admin-calendar></app-admin-calendar>
+      </div>
+      <div class="pie-chart card shadow p-2">
+        <app-piechart></app-piechart>
+      </div>
+      <div class="UpcomingHolidays  shadow-md p-1">
+        <app-admin-holiday></app-admin-holiday>
+      </div>
     </div>
-    <div class="PieChart mt-2">
-      <app-piechart></app-piechart>
+    <div class="LeaveHistory gap-1">
+      <div class="leaverequest">
+
+        <app-list-leaverequest></app-list-leaverequest>
+      </div>
+      <div class="employee-list  shadow-md p-1">
+        <app-employeelist></app-employeelist>
+      </div>
     </div>
   </div>
-</div>
-<div class="Horizontal-container mt-3">
-  <app-list-leaverequest></app-list-leaverequest>
+  
 </div>

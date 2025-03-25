@@ -48,9 +48,9 @@ export class NavbarComponent {
     }
   }
   clearLocalStorage() {
-    localStorage.clear();
     setTimeout(() => {
       this.route.navigate(['/login']);
+      localStorage.clear();
   }, 100); 
   }
 }

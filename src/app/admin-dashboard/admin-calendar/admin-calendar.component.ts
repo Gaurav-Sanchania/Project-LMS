@@ -17,19 +17,14 @@ import { CommomnService } from '../../services/commonService.service';
   styleUrl: './admin-calendar.component.css',
 })
 export class AdminCalendarComponent {
-  constructor(private commonService: CommomnService) {
-    this.activeDay.set(this.today());
-  }
-
   today: Signal<DateTime> = signal(DateTime.local());
   firstDayOfActiveMonth: WritableSignal<DateTime> = signal(
     this.today().startOf('month')
   );
   activeDay: WritableSignal<DateTime | null> = signal(null);
   weekDays: Signal<string[]> = signal(Info.weekdays('short'));
-  dateNumbers: Record<string, number> = {};
   daysOfMonth: Signal<DateTime[]> = computed(() => {
-    const days = Interval.fromDateTimes(
+    return Interval.fromDateTimes(
       this.firstDayOfActiveMonth().startOf('week'),
       this.firstDayOfActiveMonth().endOf('month').endOf('week')
     )
@@ -40,43 +35,26 @@ export class AdminCalendarComponent {
         }
         return d.start;
       });
-      days.forEach((day) => {
-        const isoDate = day.toISODate();
-        if (isoDate && !(isoDate in this.dateNumbers)) {
-          const randomNumber = Math.floor(Math.random() * 2);
-        if (randomNumber !== 0) {
-          this.dateNumbers[isoDate] = randomNumber;
-        }
-        }
-      });
-  
-      return days;
   });
+
+  constructor() {
+    this.activeDay.set(this.today());
+  }
 
   goToPreviousMonth(): void {
     this.firstDayOfActiveMonth.set(
-      this.firstDayOfActiveMonth().minus({ month: 1 })
+      this.firstDayOfActiveMonth().minus({ month: 1 }),
     );
   }
 
   goToNextMonth(): void {
     this.firstDayOfActiveMonth.set(
-      this.firstDayOfActiveMonth().plus({ month: 1 })
+      this.firstDayOfActiveMonth().plus({ month: 1 }),
     );
   }
 
   goToToday(): void {
     this.firstDayOfActiveMonth.set(this.today().startOf('month'));
     this.activeDay.set(this.today());
-  }
-
-  handleClick(day: DateTime) {
-    this.activeDay.set(day);
-    // console.log(this.activeDay);
-
-    // Open a component with all features.
-    this.commonService.getCountOnLeave();
-    this.commonService.getCountOnPresent();
-    this.commonService.getEmployeeOnLeave();
   }
 }

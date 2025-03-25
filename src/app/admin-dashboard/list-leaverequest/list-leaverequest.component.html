@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <div class="d-flex justify-content-between align-items-center sticky-top">
+  <div class="d-flex justify-content-between align-items-center">
     <p class="fs-2 fw-bold text-uppercase text-primary mb-0">Leave Requests</p>
     <div class="search-filter-container">
       <!-- Enhanced Search Bar with Filter Dropdown -->
@@ -11,13 +11,7 @@
             <mat-icon>filter_list</mat-icon>
 
           </button>
-          <!-- <select class="form-select filter-select" [(ngModel)]="currentFilterField" (change)="onFilterFieldChange()">
-            <option value="all">All Fields</option>
-            <option value="user_Name">Name</option>
-            <option value="user_Department">Department</option>
-            <option value="leave_Type">Leave Type</option>
-            <option value="status">Status</option>
-          </select> -->
+
           <input type="search" class="form-control search-input" placeholder="Search..." [(ngModel)]="searchTerm"
             (keyup)="applyFilter()" style="width: 20rem; border: 1px solid black;">
           <button class="btn btn-outline-secondary clear-btn" type="button" (click)="clearSearch()">
@@ -128,12 +122,12 @@
         </td>
       </ng-container>
 
-      <tr class="sticky-top" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row (mouseenter)="hoveredRow = row" (mouseleave)="hoveredRow = null" (click)="openEmployeeDetails(row)"
         [class.demo-row-is-hovered]="hoveredRow === row" *matRowDef="let row; columns: displayedColumns;">
       </tr>
     </table>
-    <mat-paginator [pageSize]="10" showFirstLastButtons aria-label="Select page of periodic elements">
+    <mat-paginator [pageSize]="5" showFirstLastButtons aria-label="Select page of periodic elements">
     </mat-paginator>
   </div>
 </div>
