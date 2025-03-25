@@ -8,26 +8,26 @@
           height="65px"
           width="130px"
           class="companyLogo img-fluid"
-        />
+          />
       </div>
       <span class="divider d-none d-sm-block"></span>
       <a class="navbar-brand ms-2">LeaveZ</a>
     </div>
-
+    
     <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNav"
+    class="navbar-toggler"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarNav"
     >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto gap-lg-3">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ms-auto gap-lg-3">
         <li class="nav-item me-3" *ngIf="empOrNot() == false">
           <a
-            class="nav-link position-relative"
+          class="nav-link position-relative"
             routerLink="/admin/dashboard"
             routerLinkActive="activeLink"
             [routerLinkActiveOptions]="{ exact: true }"
@@ -36,17 +36,26 @@
               style="background-color: #ffffff; color:#E76F51"
               *ngIf="pendingRequestsCount > 0"
             >
-              {{ pendingRequestsCount }}
-            </span></a
+            {{ pendingRequestsCount }}
+          </span></a
           >
         </li>
         <li class="nav-item me-3" *ngIf="empOrNot() == false">
           <a
             class="nav-link"
-            routerLink="/admin/addUser"
+            routerLink="/dashboard"
             routerLinkActive="activeLink"
             [routerLinkActiveOptions]="{ exact: true }"
-            >Users</a
+            >User Dashboard</a
+          >
+        </li>
+        <li class="nav-item me-3" *ngIf="empOrNot() == false">
+          <a
+          class="nav-link"
+          routerLink="/admin/addUser"
+          routerLinkActive="activeLink"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Users</a
           >
         </li>
         <li class="nav-item me-3" *ngIf="empOrNot() == false">
@@ -68,6 +77,15 @@
           >
         </li>
         <li class="nav-item me-3" *ngIf="empOrNot()">
+          <a
+            class="nav-link"
+            routerLink="/leaveRequest"
+            routerLinkActive="activeLink"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Request Leave</a
+          >
+        </li>
+        <li class="nav-item me-3" *ngIf="empOrNot() == false">
           <a
             class="nav-link"
             routerLink="/leaveRequest"

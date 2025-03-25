@@ -43,7 +43,8 @@ export class AllusersComponent {
   editUser(user: any) {
     // console.log("Edit user");
     this.dialog.open(AdduserComponent, {
-      width: "700px",
+      width: "800px",
+      maxWidth: "None",
       data: user
     });
   }
@@ -55,7 +56,8 @@ export class AllusersComponent {
 
   addUserForm() {
     this.dialog.open(AdduserComponent, {
-      width: "700px"
+      width: "800px",
+      maxWidth: "None",
     });
   }
   refresh() {

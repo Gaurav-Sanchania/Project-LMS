@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, SimpleChanges, ViewChild } from '@angular/core';
 import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
 import { Chart, registerables } from 'chart.js';
 import { CommomnService } from '../../services/commonService.service';
@@ -12,16 +12,32 @@ Chart.register(...registerables);
   styleUrl: './piechart.component.css'
 })
 export class PiechartComponent {
+  @Input() selectedDate!: Date;
   constructor(private commonService: CommomnService) {
   }
 
   private countOnPresent: any;
   private countOnLeave: any;
-  async ngOnInit() {
-    this.countOnPresent = await this.commonService.getCountOnPresent();
-    this.countOnLeave = await this.commonService.getCountOnLeave();
+
+  async fetchData() {
+    if (!this.selectedDate){
+      this.countOnPresent = await this.commonService.getCountOnPresent();
+      this.countOnLeave = await this.commonService.getCountOnLeave();
+    } else {
+      this.countOnPresent = await this.commonService.getCountOnDate(this.selectedDate);
+      this.countOnLeave = await this.commonService.getCountOnLeaveDate(this.selectedDate);
+    }
     this.createPieChart();
-    // console.log(this.countOnPresent);
+  }
+
+  ngOnInit() {
+    this.fetchData();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['selectedDate']) {
+      this.fetchData();
+    }
   }
 
   @ViewChild('pieCanvas') pieCanvas!: ElementRef;
@@ -47,6 +63,6 @@ export class PiechartComponent {
       data: data
     };
     
-    new Chart(this.pieCanvas.nativeElement, config);
+    this.chart = new Chart(this.pieCanvas.nativeElement, config);
   }
 }

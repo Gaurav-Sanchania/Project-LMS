@@ -7,10 +7,11 @@ import { UserService } from '../../services/userService.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-leavehistory',
-  imports: [CommonModule, MatTableModule, MatSortModule],
+  imports: [CommonModule, MatTableModule, MatSortModule, MatPaginatorModule],
   providers: [CommomnService, UserService],
   templateUrl: './leavehistory.component.html',
   styleUrl: './leavehistory.component.css'
@@ -25,14 +26,15 @@ export class LeavehistoryComponent {
     this.leavehistory = await this.commonService.getLeavesForUser();
     this.dataSource = new MatTableDataSource(this.leavehistory);
     // console.log(this.leavehistory);
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
   
   displayedColumns: string[] = ['startDate', 'endDate', 'leaveType', 'status', 'Action'];
   
   @ViewChild(MatSort) sort!: MatSort;
-  ngAfterViewChecked() {
-    this.dataSource.sort = this.sort;
-  }
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  hoveredRow: any = null;
 
   async editLeave(leaveId: number) {
     // console.log('Edit Leave', leaveId);
