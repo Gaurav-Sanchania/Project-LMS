@@ -1,0 +1,21 @@
+.container {
+    background-color: #fff;
+    // box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    // border-radius: 10px;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+}
+.container::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+    display: none;
+}
+.title {
+    background-color: white;
+    position: sticky;
+    top: 0px;
+    margin: 0px;
+    padding: 0;
+    z-index: 5;
+}

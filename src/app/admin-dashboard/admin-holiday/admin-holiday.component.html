@@ -1,0 +1,20 @@
+<div class="container ">
+    <p class="fs-3 fw-bold text-uppercase text-primary title  sticky-top" >Upcoming Holidays</p>
+    <div class="" *ngIf="holidays.length == 0">
+        <p>No upcoming holidays.</p>
+    </div>
+    <table class="table table-bordered table-hover" *ngIf="holidays.length != 0">
+        <thead>
+            <tr>
+                <th>Holiday</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let leave of holidays">
+                <td>{{leave.event}}</td>
+                <td>{{leave.dateOfEvent}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
