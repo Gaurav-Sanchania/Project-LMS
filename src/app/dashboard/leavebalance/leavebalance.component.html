@@ -4,7 +4,7 @@
         <div class="leaveBalance" *ngFor="let leave of leaveBalance">
             <span class="leave-type">{{ leave.leaveType }}</span>
             <div class="circular-progress" [ngClass]="leave.leaveType.toLowerCase()" 
-                 [style]="getProgressStyle(leave.leaveBalance)">
+                 [style]="getProgressStyle(leave.leaveBalance, leave.maxLeave)">
                 <div class="inner-circle">{{ leave.leaveBalance }}</div>
             </div>
         </div>

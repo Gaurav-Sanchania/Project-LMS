@@ -19,14 +19,16 @@ export class CommomnService {
         // console.log(this.today);
     }
 
-    async getLeaveBalance(): Promise<{ leaveBalance: number; leaveType: string }[]> {
+    async getLeaveBalance(): Promise<{ leaveBalance: number; leaveType: string; maxLeave: number }[]> {
         try {
             const response = await firstValueFrom(
-                this.httpClient.get<{ userName: string; leaveType: string; leaveBalance: number; leaveTypeId: number }[]>(
+                this.httpClient.get<{ userName: string; leaveType: string; leaveBalance: number; leaveTypeId: number; 
+                    maxLeave: number
+                 }[]>(
                     `https://localhost:7129/UserController/GetUserLeaveBalance/${this.userId}`
                 )
             );
-            const filteredData = response.map(({ leaveBalance, leaveType }) => ({ leaveBalance, leaveType })); 
+            const filteredData = response.map(({ leaveBalance, leaveType, maxLeave }) => ({ leaveBalance, leaveType, maxLeave })); 
             // console.log("Filtered Leave Balance Data:", filteredData);
             return filteredData;
         } catch (error) {
