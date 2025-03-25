@@ -4,24 +4,26 @@
   <div class="content-display">
     <div class="d-flex gap-1">
       <div class="calendar card shadow p-2">
-        <app-admin-calendar></app-admin-calendar>
+        <app-calendar (dateSelected)="onDateChange($event)"></app-calendar>
       </div>
       <div class="pie-chart card shadow p-2">
-        <app-piechart></app-piechart>
+        <app-piechart [selectedDate]="selectedDate"></app-piechart>
       </div>
-      <div class="UpcomingHolidays  shadow-md p-1">
-        <app-admin-holiday></app-admin-holiday>
+      <div class="employee-list   shadow-md p-1">
+        <app-employeelist [selectedDate]="selectedDate"></app-employeelist>
       </div>
     </div>
-    <div class="LeaveHistory gap-1">
-      <div class="leaverequest">
 
+    <div class="LeaveHistory gap-1">
+
+      <div class="leaverequest">
         <app-list-leaverequest></app-list-leaverequest>
       </div>
-      <div class="employee-list  shadow-md p-1">
-        <app-employeelist></app-employeelist>
+      <div class=" UpcomingHolidays shadow-md p-1">
+        <app-admin-holiday></app-admin-holiday>
       </div>
+
     </div>
   </div>
-  
+
 </div>
