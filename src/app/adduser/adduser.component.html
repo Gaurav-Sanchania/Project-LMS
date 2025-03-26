@@ -117,8 +117,13 @@
       </div>
     </div>
 
-    <button type="submit" class="btn btn-primary" [disabled]="confirmationForm.invalid">
+    <input type="number" hidden [value]="data.id" *ngIf="data != null">
+
+    <button type="submit" class="btn btn-primary" [disabled]="confirmationForm.invalid" *ngIf="data == null">
       Confirm
+    </button>
+    <button type="button" (click)="editUser(data.id)" class="btn btn-primary" [disabled]="confirmationForm.invalid" *ngIf="data != null">
+      Edit
     </button>
   </form>
 </div>

@@ -38,11 +38,22 @@ export class AdminService {
         }
     }
 
-    addUser(userDate: any) {
+    addUser(userData: any) {
         try {
-            this.httpClient.post("https://localhost:7129/UserController/AddUser", userDate).subscribe((m) => {
+            this.httpClient.post("https://localhost:7129/UserController/AddUser", userData).subscribe((m) => {
             });
             return 'Successfull';
+        } catch (error) {
+            // console.log(error);
+            return error;
+        }
+    }
+
+    editUserDetails(userData: any) {
+        console.log(userData);
+        try {
+            this.httpClient.post(`https://localhost:7129/UserController/UpdateUser`, userData).subscribe();
+            return 'Successful';
         } catch (error) {
             // console.log(error);
             return error;

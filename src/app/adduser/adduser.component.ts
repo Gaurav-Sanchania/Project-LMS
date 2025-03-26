@@ -3,6 +3,7 @@ import { Component, Inject, ViewChild } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
+  FormsModule,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
@@ -15,7 +16,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-adduser',
-  imports: [CommonModule, ReactiveFormsModule, MatTableModule, MatSortModule],
+  imports: [CommonModule, ReactiveFormsModule, MatTableModule, MatSortModule, FormsModule],
   providers: [AdminService],
   templateUrl: './adduser.component.html',
   styleUrl: './adduser.component.scss',
@@ -36,28 +37,42 @@ export class AdduserComponent {
   ) {}
 
   async ngOnInit() {
-    if (this.data) {
-        this.initForm(this.data); // Pass data to initForm
+    // console.log(this.data);
+    if (this.data != null) {
+        this.initForm(this.data);
     } else {
-        this.initForm(); // Initialize empty form
+        this.initForm2(this.data);
     }
 
     this.departments = await this.adminService.getDepartmentTypes();
     this.userTypes = await this.adminService.getUserTypes();
-}
+    // console.log(this.departments, this.userTypes);
+  }
 
-private initForm(data: any = null) {
+  private initForm(data: any) {
+    this.confirmationForm = this.fb.group({
+        id: [data?.id || ''],
+        name: [data?.name || '', Validators.required],
+        email: [data?.email || '', [Validators.required, Validators.email]],
+        address: [data?.address || '', Validators.required],
+        phone: [data?.phone || '', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
+        password: [data?.password || '', [Validators.required, Validators.minLength(6)]],
+        department: [data?.depart_Id || '', Validators.required],
+        userType: [data?.userType_Id || '', Validators.required],
+    });
+  }
+  
+  private initForm2(data: any = null) {
     this.confirmationForm = this.fb.group({
         name: [data?.name || '', Validators.required],
         email: [data?.email || '', [Validators.required, Validators.email]],
         address: [data?.address || '', Validators.required],
         phone: [data?.phone || '', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
-        password: [data ? '******' : '', [Validators.required, Validators.minLength(6)]], // Hide password
+        password: [data?.password || '', [Validators.required, Validators.minLength(6)]],
         department: [data?.department || '', Validators.required],
         userType: [data?.userType || '', Validators.required],
     });
-}
-
+  }
 
   onSubmit() {
     if (this.confirmationForm.valid) {
@@ -66,6 +81,17 @@ private initForm(data: any = null) {
       // console.log(this.submittedData);
 
       const status = this.adminService.addUser(this.submittedData);
+      // console.log(status);
+    }
+  }
+  
+  editUser(id: number) {
+    if (this.confirmationForm.valid) {
+      // this.isSubmitted = true;
+      this.submittedData = this.confirmationForm.value;
+      // console.log(this.submittedData);
+  
+      const status = this.adminService.editUserDetails(this.submittedData);
       // console.log(status);
     }
   }

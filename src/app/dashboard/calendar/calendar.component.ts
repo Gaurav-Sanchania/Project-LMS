@@ -51,6 +51,10 @@ export class CalendarComponent {
   goToToday(): void {
     this.firstDayOfActiveMonth.set(this.today().startOf('month'));
     this.activeDay.set(this.today());
+    if (this.activeDay() !== null) {
+      this.dateSelected.emit(this.activeDay()!.toJSDate());
+    }
+    this.ngOnInit();
   }
 
   handleCalendarEvent(day: any) {
