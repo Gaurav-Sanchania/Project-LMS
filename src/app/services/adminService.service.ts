@@ -102,7 +102,7 @@ export class AdminService {
 
     deteleUserById(id: number) {
         try {
-            this.httpClient.post(``, id).subscribe();
+            this.httpClient.post(`https://localhost:7129/UserController/RemoveUser/${id}`, id).subscribe();
             return 'Successful';
         } catch (error) {
             return error;

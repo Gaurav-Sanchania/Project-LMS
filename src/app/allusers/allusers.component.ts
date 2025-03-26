@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { AdduserComponent } from '../adduser/adduser.component';
 import { ConfirmDialogComponent } from '../dashboard/confirm-dialog/confirm-dialog.component';
+import { ConfirmUserDeleteComponent } from '../confirm-user-delete/confirm-user-delete.component';
 
 @Component({
   selector: 'app-allusers',
@@ -50,7 +51,11 @@ export class AllusersComponent {
   }
   deleteUser(user: any) {
     // console.log("Delete user");
-    this.dialog.open(ConfirmDialogComponent, {
+    this.dialog.open(ConfirmUserDeleteComponent, {
+      enterAnimationDuration: '500ms',
+      exitAnimationDuration: '300ms',
+      panelClass: 'slide-dialog',
+      data: { id: user.id }
     })
   }
 
